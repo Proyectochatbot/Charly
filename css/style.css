@@ -7,6 +7,12 @@
  */
 :root {
   --blue: #007bff;
+  /*Charly registraro los colores que usaremos*/
+  /*inicio*/
+  --rich-black: #041C19;
+  --timber-green: #364436;
+  --floral-white: #fffbf3;
+  /*Final*/
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -365,7 +371,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Oswald", sans-serif;
   font-weight: 500;
   line-height: 1.2;
-  color: #252531;
+  color: #000000;
 }
 
 h1, .h1 {
@@ -473,7 +479,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgb(0, 0, 0);
 }
 
 small,
@@ -567,7 +573,7 @@ kbd {
   padding: 0.2rem 0.4rem;
   font-size: 87.5%;
   color: #fff;
-  background-color: #212529;
+  background-color: #364436;
 }
 
 kbd kbd {
@@ -579,7 +585,7 @@ kbd kbd {
 pre {
   display: block;
   font-size: 87.5%;
-  color: #212529;
+  color: #364436;
 }
 
 pre code {
@@ -605,6 +611,22 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+
+/*Charly pusieron los colores de fondo*/
+/*inicio*/
+.bg-rich-black {
+  background-color: var(--rich-black);
+}
+
+.bg-white {
+  background-color: var(--white);
+}
+
+.bg-floral-white {
+  background-color: var(--floral-white);
+}
+/*Final*/
+
 
 @media (min-width: 576px) {
   .container, .container-sm {
@@ -9509,6 +9531,7 @@ h6 {
   }
 }
 
+/*charly cambio el color*/
 .nav-bar::before {
   position: absolute;
   content: "";
@@ -9516,9 +9539,11 @@ h6 {
   height: 50%;
   top: 0;
   left: 0;
-  background: #181818;
+  background: #041C19;
 }
 
+
+/*charly cambio el color*/
 .nav-bar::after {
   position: absolute;
   content: "";
@@ -9526,7 +9551,7 @@ h6 {
   height: 50%;
   bottom: 0;
   left: 0;
-  background: #ffffff;
+  background: #fffbf3;
 }
 
 .navbar-dark .navbar-nav .nav-link {
