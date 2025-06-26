@@ -9769,3 +9769,12 @@ h6 {
   padding: 0;
   list-style-type: none;
 }
+
+/* === Estilo personalizado para la tarjeta RESIDENCIAL === */
+.card-residencial:hover {
+  transform: scale(1.03);
+}
+.card-residencial:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
