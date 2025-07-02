@@ -9789,3 +9789,100 @@ h6 {
   transform: scale(1.03);
   box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
+.carrusel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrusel-imagenes {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.imagen-carrusel {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.imagen-carrusel.active {
+  display: block;
+}
+
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #00000088;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.carrusel-btn.prev {
+  left: 10px;
+}
+
+.carrusel-btn.next {
+  right: 10px;
+}
+.carrusel-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000; /* Opcional */
+}
+
+.carrusel-imagenes {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.imagen-carrusel {
+  display: none;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.imagen-carrusel.active {
+  display: block;
+}
+
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #00000088;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.carrusel-btn.prev {
+  left: 10px;
+}
+
+.carrusel-btn.next {
+  right: 10px;
+}
