@@ -773,5 +773,30 @@ style="width: 100%; max-width: 200px; height: auto; object-fit: cover; border-ra
 
     <!-- Plantilla Javascript -->
     <script src="js/main.js"></script>
+
+    <audio id="musicaFondo" autoplay loop style="display: none;">
+  <source src="musica-fondo.mp3" type="audio/mpeg">
+  Tu navegador no soporta el audio HTML5.
+</audio>
+<button onclick="toggleAudio()" style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
+  🔊 Música
+</button>
+
+<script>
+  const audio = document.getElementById('musicaFondo');
+  let isPlaying = true;
+
+  function toggleAudio() {
+    if (isPlaying) {
+      audio.pause();
+      event.target.innerText = "🔇 Silenciado";
+    } else {
+      audio.play();
+      event.target.innerText = "🔊 Música";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
 </body>
 </html>
