@@ -468,31 +468,50 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <audio id="musicaFondo" autoplay loop style="display: none;">
-  <source src="musica-fondo.mp3" type="audio/mpeg">
-  Tu navegador no soporta el audio HTML5.
-</audio>
-<button onclick="toggleAudio()" style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
-  🔊 Música
-</button>
+    <!-- Musica de Fondo Playlist mejorado por Charly -->
+    <audio id="musicaFondo" autoplay style="display: none;">
+    </audio>
 
-<script>
-  const audio = document.getElementById('musicaFondo');
-  let isPlaying = true;
+    <button onclick="toggleAudio()" class="bg-basil text-rich-black" style="position: fixed; top: 13px; right: 2px; z-index: 9999;">
+        🔊Música
+    </button>
 
-  function toggleAudio() {
-    if (isPlaying) {
-      audio.pause();
-      event.target.innerText = "🔇 Silenciado";
-    } else {
-      audio.play();
-      event.target.innerText = "🔊 Música";
-    }
-    isPlaying = !isPlaying;
-  }
-</script>
+    <script>
+        // Aqui se ponen las canciones 
+        const canciones = [
+            "Musica/musica-fondo.mp3", 
+            "cancion1.mp3",
+            "cancion2.mp3",
+            // puedes Agregar más canciones aquí:
+            // "cancion5.mp3",
+            // "cancion6.mp3",
+        ];
 
-    
+        const audio = document.getElementById('musicaFondo');
+        let isPlaying = true;
+        let cancionActual = 0;
+
+        // Carga la primera canción
+        audio.src = canciones[cancionActual];
+
+        // Cuando termine una canción, se reproduce la siguiente automáticamente
+        audio.addEventListener('ended', function() {
+            cancionActual = (cancionActual + 1) % canciones.length; // Vuelve al inicio cuando termine la lista
+            audio.src = canciones[cancionActual];
+            audio.play(); // Reproduce automáticamente la siguiente cancion
+        });
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                event.target.innerText = "🔇Mute";
+            } else {
+                audio.play();
+                event.target.innerText = "🔊Música";
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+        
 </body>
-
 </html>
