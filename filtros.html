@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8">
   <title>Editor Visual - MOME Design</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="Filtros, Diseño Interior, MOME">
   <meta name="description" content="Editor visual con filtros y texturas para diseño de interiores">
-
   <!-- Favicon -->
   <link href="img/favicon.ico" rel="icon">
-
   <!-- Tipografías y Estilos -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -19,17 +16,14 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
     }
-
     .container-filtros {
       padding: 80px 20px;
       text-align: center;
     }
-
     #uploadedImage {
       max-width: 100%;
       height: auto;
@@ -37,8 +31,20 @@
       display: none;
       border-radius: 10px;
       border: 2px solid #ccc;
+      transition: all 0.3s ease;
     }
-
+    #colorOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      opacity: 0.6;
+      pointer-events: none;
+      border-radius: 10px;
+      mix-blend-mode: multiply;
+    }
     #textureOverlay {
       position: absolute;
       top: 0;
@@ -50,11 +56,14 @@
       pointer-events: none;
       border-radius: 10px;
     }
-
+    .preview {
+      position: relative;
+      display: inline-block;
+      margin: 20px auto;
+    }
     .filter-buttons {
       margin-top: 20px;
     }
-
     .filter-buttons button {
       margin: 10px;
       padding: 10px 20px;
@@ -63,58 +72,129 @@
       border: none;
       border-radius: 5px;
       font-weight: bold;
-      transition: background-color 0.3s;
+      transition: all 0.3s;
+      cursor: pointer;
     }
-
     .filter-buttons button:hover {
       background-color: #1a2621;
+      transform: translateY(-2px);
     }
-
+    .color-button {
+      width: 60px !important;
+      height: 60px !important;
+      border-radius: 50% !important;
+      margin: 5px !important;
+      padding: 0 !important;
+      border: 3px solid #fff !important;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .color-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
     .filter-buttons img {
       width: 60px;
       height: 60px;
       object-fit: cover;
       border-radius: 5px;
     }
-
     h4 {
       margin-top: 50px;
       color: #2c3e30;
     }
+    .color-picker-container {
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    #colorPicker {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background: none;
+      padding: 0;
+    }
+
+    #colorPicker::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+    }
+
+    #colorPicker::-webkit-color-swatch {
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    #colorPicker::-moz-color-swatch {
+      border: none;
+      border-radius: 50%;
+    }
+
+    #colorPicker:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .intensity-slider {
+      margin: 20px 0;
+    }
+    .intensity-slider input {
+      width: 300px;
+      max-width: 100%;
+    }
+    .reset-button {
+      background-color: #dc3545 !important;
+      margin-top: 20px;
+    }
+    .reset-button:hover {
+      background-color: #c82333 !important;
+    }
   </style>
 </head>
-
 <body>
-
-  <!-- Inicio barra superior -->
+  <!-- Inicio de la barra Superior -->
   <div class="container-fluid bg-rich-black py-3">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
           <div class="d-inline-flex align-items-center">
-            <a class="text-white px-2" href="#">Preguntas Frecuentes</a>
-            <a class="text-white px-2" href="#">Ayuda</a>
-            <a class="text-white px-2" href="#">Soporte</a>
+            <a class="text-white pr-3" href="">Preguntas Frecuentes</a>
+            <span class="text-white">|</span>
+            <a class="text-white px-3" href="">Ayuda</a>
+            <span class="text-white">|</span>
+            <a class="text-white pl-3" href="">Soporte</a>
           </div>
         </div>
         <div class="col-md-6 text-center text-lg-right">
-          <a href="https://www.facebook.com/momedarquitectura" target="_blank" class="text-white px-2">
-            <i class="fab fa-facebook"></i>
-          </a>
-          <a href="https://www.instagram.com/momed_arquitectura/" target="_blank" class="text-white px-2">
-            <i class="fab fa-instagram"></i>
-          </a>
+          <div class="d-inline-flex align-items-center">
+            <a class="text-white px-3" href="https://www.facebook.com/p/MOMED-100075915498484/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="text-white px-3" href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Fin barra superior -->
+  <!-- Final de la barra Superior -->
 
   <!-- Navbar -->
   <div class="container-fluid position-relative nav-bar p-0">
     <div class="container position-relative" style="z-index: 9;">
-      <nav class="navbar navbar-expand-lg bg-floral-white navbar-dark py-3 py-lg-0 px-3 px-lg-5">
-        <a href="index.html" class="navbar-brand">
+      <nav class="navbar navbar-expand-lg bg-floral-white navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+        <a href="" class="navbar-brand">
           <img src="img/Logo.jpg" alt="Logo MOMED" style="height: 150px;">
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -122,12 +202,19 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
           <div class="navbar-nav ml-auto py-0">
-            <a href="index.html" class="nav-item nav-link">Hogar</a>
-            <a href="about.html" class="nav-item nav-link">Acerca de</a>
-            <a href="service.html" class="nav-item nav-link">Servicios</a>
-            <a href="project.html" class="nav-item nav-link">Proyectos</a>
-            <a href="filtros.html" class="nav-item nav-link active">Editor Visual</a>
-            <a href="contact.html" class="nav-item nav-link">Contacto</a>
+            <a href="index.html" class="nav-item text-rich-black nav-link active">Hogar</a>
+            <a href="about.html" class="nav-item text-timber-green nav-link">Acerca de</a>
+            <a href="service.html" class="nav-item text-timber-green nav-link">Servicio</a>
+            <a href="project.html" class="nav-item text-timber-green nav-link">Proyecto</a>
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle text-timber-green" data-toggle="dropdown">Paginas</a>
+              <div class="dropdown-menu rounded-0 m-0">
+                <a href="blog.html" class="dropdown-item text-timber-green">Cuadricula de Blog</a>
+                <a href="single.html" class="dropdown-item text-timber-green">Detalle del Blog</a>
+                <a href="filtros.html" class="dropdown-item text-timber-green">Editor Visual</a>
+              </div>
+            </div>
+            <a href="contact.html" class="nav-item text-timber-green nav-link">Contacto</a>
           </div>
         </div>
       </nav>
@@ -135,51 +222,216 @@
   </div>
   <!-- Fin Navbar -->
 
+  <!-- Inicio de Navegación -->
+  <div class="container-fluid bg-timber-green py-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Bloque Correo -->
+        <div class="col-lg-6 d-flex mb-3 mb-lg-0">
+          <div class="d-inline-flex text-left align-items-start">
+            <a href="mailto:momedproyectos@gmail.com" class="mr-3">
+              <i class="fas fa-envelope fa-2x" style="color: #075e54;"></i>
+            </a>
+            <div class="d-flex flex-column">
+              <h5 class="text-floral-white mb-1">Envíanos un correo electrónico</h5>
+              <a href="mailto:momedproyectos@gmail.com" class="text-floral-white" style="text-decoration: none;">
+                momedproyectos@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Bloque WhatsApp -->
+        <div class="col-lg-6 d-flex">
+          <div class="d-inline-flex text-left align-items-start">
+            <a href="https://wa.me/524423440411" target="_blank">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width: 36px; height: 36px;" class="mr-3">
+            </a>
+            <div class="d-flex flex-column">
+              <h5 class="text-floral-white mb-1">Contáctanos</h5>
+              <a href="https://wa.me/524423440411" target="_blank" class="text-floral-white" style="text-decoration: none;">
+                +52 442 3440411
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Final de Navegación -->
+
+  <!-- Inicio del encabezado de la página -->
+  <div class="container-fluid bg-rich-black py-5">
+    <div class="container py-5">
+      <div class="row align-items-center py-4">
+        <div class="col-md-6 text-center text-md-left">
+          <h1 class="mb-4 mb-md-0 text-floral-white text-uppercase">Filtros para tus espacios</h1>
+        </div>
+        <div class="col-md-6 text-center text-md-right">
+          <div class="d-inline-flex align-items-center">
+            <a class="btn btn-outline-primary" href="">Hogar</a>
+            <i class="fas fa-angle-double-right text-juniper mx-2"></i>
+            <a class="btn btn-outline-primary disabled" href="">Editador Visual</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin del encabezado de la página -->
+
   <!-- CONTENIDO PRINCIPAL -->
   <div class="container container-filtros">
     <h2 class="mb-4">Editor Visual de Paredes y Espacios</h2>
-    <p class="text-muted mb-4" style="max-width: 800px; margin: auto;">
-      Esta es la sección de filtros de imágenes para tu hogar. Aquí puedes subir una foto de tu espacio y aplicar diferentes efectos visuales para visualizar cómo se vería con distintos materiales, acabados o colores. Puedes probar estilos como madera, piedra, ladrillo, o cambiar el tono general de tu imagen.
+    <p class="text-rich-black mb-4" style="max-width: 800px; margin: auto;">
+      Esta es la sección de filtros de imágenes para tu hogar. Aquí puedes subir una foto de tu espacio y aplicar diferentes colores y efectos visuales para visualizar cómo se vería con distintos materiales, acabados o colores. Perfecto para probar diferentes tonos de pintura en tus paredes.
     </p>
 
     <!-- Subir imagen -->
-    <input type="file" id="imageUpload" accept="image/*" class="form-control-file mb-4">
-
-    <!-- Vista previa -->
-    <div class="preview position-relative">
-      <img id="uploadedImage" src="#" alt="Imagen subida">
-      <img id="textureOverlay" src="" alt="">
+    <div class="mb-4">
+      <label for="imageUpload" class="btn btn-primary btn-lg">
+        <i class="fas fa-upload mr-2"></i>Subir Imagen de tu Pared
+      </label>
+      <input type="file" id="imageUpload" accept="image/*" style="display: none;">
     </div>
 
-    <!-- Filtros de color -->
-    <h4>Filtros de color</h4>
+    <!-- Vista previa -->
+    <div class="preview">
+      <img id="uploadedImage" src="#" alt="Imagen subida">
+      <div id="colorOverlay"></div>
+      <img id="textureOverlay" src="/placeholder.svg" alt="">
+    </div>
+
+    <!-- Colores predefinidos para paredes -->
+    <h4>Colores Populares para Paredes</h4>
     <div class="filter-buttons">
-      <button onclick="applyFilter('grayscale(100%)')">Tono Gris</button>
-      <button onclick="applyFilter('sepia(100%)')">Efecto Madera</button>
-      <button onclick="applyFilter('hue-rotate(90deg)')">Pintura Azul</button>
-      <button onclick="applyFilter('contrast(200%)')">Alto Contraste</button>
-      <button onclick="applyFilter('none')">Sin Filtro</button>
+      <button class="color-button" style="background-color: #FFFFFF;" onclick="applyWallColor('#FFFFFF')" title="Blanco"></button>
+      <button class="color-button" style="background-color: #F5F5DC;" onclick="applyWallColor('#F5F5DC')" title="Beige"></button>
+      <button class="color-button" style="background-color: #D2B48C;" onclick="applyWallColor('#D2B48C')" title="Arena"></button>
+      <button class="color-button" style="background-color: #F0E68C;" onclick="applyWallColor('#F0E68C')" title="Amarillo Suave"></button>
+      <button class="color-button" style="background-color: #98FB98;" onclick="applyWallColor('#98FB98')" title="Verde Menta"></button>
+      <button class="color-button" style="background-color: #87CEEB;" onclick="applyWallColor('#87CEEB')" title="Azul Cielo"></button>
+      <button class="color-button" style="background-color: #DDA0DD;" onclick="applyWallColor('#DDA0DD')" title="Lavanda"></button>
+      <button class="color-button" style="background-color: #FFB6C1;" onclick="applyWallColor('#FFB6C1')" title="Rosa Suave"></button>
+      <button class="color-button" style="background-color: #FFDAB9;" onclick="applyWallColor('#FFDAB9')" title="Durazno"></button>
+      <button class="color-button" style="background-color: #E6E6FA;" onclick="applyWallColor('#E6E6FA')" title="Lila Claro"></button>
+      <button class="color-button" style="background-color: #F5DEB3;" onclick="applyWallColor('#F5DEB3')" title="Trigo"></button>
+      <button class="color-button" style="background-color: #D3D3D3;" onclick="applyWallColor('#D3D3D3')" title="Gris Claro"></button>
+    </div>
+
+    <!-- Selector de color personalizado -->
+    <h4>Color Personalizado</h4>
+    <div class="color-picker-container">
+      <label for="colorPicker">Elige tu color:</label>
+      <input type="color" id="colorPicker" value="#FFFFFF" onchange="applyCustomColor()">
+      <button onclick="applyCustomColor()" class="btn btn-success">Aplicar Color</button>
+    </div>
+
+    <!-- Control de intensidad -->
+    <div class="intensity-slider">
+      <label for="intensityRange">Intensidad del Color:</label><br>
+      <input type="range" id="intensityRange" min="0" max="100" value="60" onchange="updateIntensity()">
+      <span id="intensityValue">60%</span>
+    </div>
+
+    <!-- Filtros de efecto -->
+    <h4>Efectos Adicionales</h4>
+    <div class="filter-buttons">
+      <button onclick="applyFilter('brightness(1.2)')">Más Brillo</button>
+      <button onclick="applyFilter('brightness(0.8)')">Menos Brillo</button>
+      <button onclick="applyFilter('contrast(1.3)')">Más Contraste</button>
+      <button onclick="applyFilter('saturate(1.5)')">Más Saturación</button>
+      <button onclick="applyFilter('none')">Sin Efectos</button>
     </div>
 
     <!-- Filtros de textura -->
-    <h4>Aplicar texturas visuales</h4>
+    <h4>Aplicar Texturas Visuales</h4>
     <div class="filter-buttons d-flex flex-wrap justify-content-center">
-      <button onclick="applyTexture('img/textura-madera.jpg')">
-        <img src="img/textura-madera.jpg" alt="Madera">
+      <button onclick="applyTexture('/placeholder.svg?height=200&width=200&text=Madera')">
+        <img src="img/Madera.jpg" alt="Madera">
+        <div>Madera</div>
       </button>
-      <button onclick="applyTexture('img/textura-piedra.jpg')">
-        <img src="img/textura-piedra.jpg" alt="Piedra">
+      <button onclick="applyTexture('/placeholder.svg?height=200&width=200&text=Piedra')">
+        <img src="img/Piedra.jpg" alt="Piedra">
+        <div>Piedra</div>
       </button>
-      <button onclick="applyTexture('img/textura-ladrillo.jpg')">
-        <img src="img/textura-ladrillo.jpg" alt="Ladrillo">
+      <button onclick="applyTexture('/placeholder.svg?height=200&width=200&text=Ladrillo')">
+        <img src="img/Ladrillo.jfif" alt="Ladrillo">
+        <div>Ladrillo</div>
       </button>
       <button onclick="applyTexture('')">
         <span style="display:inline-block; width:60px; height:60px; background-color:#ddd; border-radius:5px; line-height:60px;">❌</span>
+        <div>Sin Textura</div>
+      </button>
+    </div>
+
+    <!-- Botón de reset -->
+    <div class="mt-4">
+      <button onclick="resetAll()" class="btn btn-lg reset-button">
+        <i class="fas fa-undo mr-2"></i>Resetear Todo
       </button>
     </div>
   </div>
 
-  <!-- FOOTER (puedes copiar el mismo de index.html si ya tienes uno) -->
+  <!-- FOOTER -->
+  <div class="container-fluid bg-rich-black text-timber-green py-5 px-sm-3 px-md-5">
+    <div class="row pt-5">
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h4 class="text-shamrock mb-4">Contáctanos</h4>
+        <p class="text-floral-white"><i class="fa text-floral-white fa-phone-alt mr-2"></i>+52 442 3440411</p>
+        <p class="text-floral-white"><i class="fa text-floral-white fa-phone-alt mr-2"></i>+52 442 3451559</p>
+        <p class="text-floral-white"><i class="fa text-floral-white fa-envelope mr-2"></i>momedproyectos@gmail.com</p>
+        <div class="d-flex justify-content-start mt-4">
+          <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="https://www.facebook.com/p/MOMED-100075915498484/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h4 class="text-shamrock mb-4">Accesos Directos</h4>
+        <div class="d-flex flex-column justify-content-start">
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Inicio</a>
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Sobre Nosotros</a>
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nuestros Servicios</a>
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nuestros Proyectos</a>
+          <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contáctanos</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h4 class="text-shamrock mb-4">Secciones Populares</h4>
+        <div class="d-flex flex-column justify-content-start">
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Inicio</a>
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Sobre Nosotros</a>
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nuestros Servicios</a>
+          <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Nuestros Proyectos</a>
+          <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contáctanos</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-5">
+        <h4 class="text-shamrock mb-4">Conéctate con Nosotros</h4>
+        <form action="">
+          <div class="form-group">
+            <input type="text" class="form-control border-0" placeholder="Tu Nombre" required="required" />
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control border-0" placeholder="Tu Correo Electrónico" required="required" />
+          </div>
+          <div>
+            <button class="btn btn-lg btn-primary btn-block border-0" type="submit">Enviar ahora</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container border-top border-secondary pt-5">
+      <p class="m-0 text-center text-white">
+        &copy; <a class="text-white font-weight-bold" href="#">MOMED</a>. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+
+  <!-- Volver Arriba -->
+  <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
   <!-- SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -190,8 +442,16 @@
   <script>
     const imageUpload = document.getElementById('imageUpload');
     const uploadedImage = document.getElementById('uploadedImage');
+    const colorOverlay = document.getElementById('colorOverlay');
     const textureOverlay = document.getElementById('textureOverlay');
+    const colorPicker = document.getElementById('colorPicker');
+    const intensityRange = document.getElementById('intensityRange');
+    const intensityValue = document.getElementById('intensityValue');
 
+    let currentColor = '#FFFFFF';
+    let currentIntensity = 60;
+
+    // Cargar imagen
     imageUpload.addEventListener('change', function (event) {
       const file = event.target.files[0];
       if (file) {
@@ -199,17 +459,64 @@
         reader.onload = function (e) {
           uploadedImage.src = e.target.result;
           uploadedImage.style.display = 'block';
-          textureOverlay.style.display = 'block';
+          colorOverlay.style.display = 'block';
+          // Aplicar color actual si hay uno
+          if (currentColor) {
+            applyWallColor(currentColor);
+          }
         };
         reader.readAsDataURL(file);
       }
     });
 
+    // Aplicar color de pared predefinido
+    function applyWallColor(color) {
+      if (uploadedImage.style.display === 'none') {
+        alert('Por favor, sube una imagen primero');
+        return;
+      }
+      
+      currentColor = color;
+      colorOverlay.style.backgroundColor = color;
+      colorOverlay.style.opacity = currentIntensity / 100;
+      colorOverlay.style.display = 'block';
+      
+      // Actualizar el selector de color
+      colorPicker.value = color;
+    }
+
+    // Aplicar color personalizado
+    function applyCustomColor() {
+      const color = colorPicker.value;
+      applyWallColor(color);
+    }
+
+    // Actualizar intensidad
+    function updateIntensity() {
+      currentIntensity = intensityRange.value;
+      intensityValue.textContent = currentIntensity + '%';
+      
+      if (currentColor && uploadedImage.style.display !== 'none') {
+        colorOverlay.style.opacity = currentIntensity / 100;
+      }
+    }
+
+    // Aplicar filtros CSS
     function applyFilter(filter) {
+      if (uploadedImage.style.display === 'none') {
+        alert('Por favor, sube una imagen primero');
+        return;
+      }
       uploadedImage.style.filter = filter;
     }
 
+    // Aplicar textura
     function applyTexture(texturePath) {
+      if (uploadedImage.style.display === 'none') {
+        alert('Por favor, sube una imagen primero');
+        return;
+      }
+      
       if (texturePath === '') {
         textureOverlay.src = '';
         textureOverlay.style.display = 'none';
@@ -218,8 +525,73 @@
         textureOverlay.style.display = 'block';
       }
     }
+
+    // Resetear todo
+    function resetAll() {
+      uploadedImage.style.filter = 'none';
+      colorOverlay.style.display = 'none';
+      textureOverlay.style.display = 'none';
+      textureOverlay.src = '';
+      currentColor = '#FFFFFF';
+      colorPicker.value = '#FFFFFF';
+      intensityRange.value = 60;
+      currentIntensity = 60;
+      intensityValue.textContent = '60%';
+    }
+
+    // Inicializar
+    updateIntensity();
   </script>
 
-</body>
+  <!-- JavaScript Librerias -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <!-- Archivo de Contacto Javascript -->
+  <script src="mail/jqBootstrapValidation.min.js"></script>
+  <script src="mail/contact.js"></script>
+  <!-- Plantilla Javascript -->
+  <script src="js/main.js"></script>
 
+  <!-- Musica de Fondo Playlist mejorado por Charly -->
+  <audio id="musicaFondo" autoplay style="display: none;"></audio>
+  <button onclick="toggleAudio()" class="bg-basil text-rich-black" style="position: fixed; top: 13px; right: 2px; z-index: 9999;">
+    🔊Música
+  </button>
+  <script>
+    // Aqui se ponen las canciones 
+    const canciones = [
+      "Musica/musica-fondo.mp3", 
+      "cancion1.mp3",
+      "cancion2.mp3",
+    ];
+    const audio = document.getElementById('musicaFondo');
+    let isPlaying = true;
+    let cancionActual = 0;
+    
+    // Carga la primera canción
+    audio.src = canciones[cancionActual];
+    
+    // Cuando termine una canción, se reproduce la siguiente automáticamente
+    audio.addEventListener('ended', function() {
+      cancionActual = (cancionActual + 1) % canciones.length;
+      audio.src = canciones[cancionActual];
+      audio.play();
+    });
+    
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        event.target.innerText = "🔇Mute";
+      } else {
+        audio.play();
+        event.target.innerText = "🔊Música";
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+</body>
 </html>
