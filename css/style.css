@@ -2363,7 +2363,7 @@ textarea.form-control {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #777777;
+  color: #ffffff;
   text-align: center;
   vertical-align: middle;
   user-select: none;
@@ -2410,8 +2410,8 @@ fieldset:disabled a.btn {
 /*Charly Cambio de color de ver mas y la flecha de arriba*/
 .btn-primary {
   color: #ffffff;
-  background-color: #03ac13;
-  border-color: #03ac13;
+  background-color: #32612d;
+  border-color: #32612d;
 }
 
 /*Charly Cambio de color de ver mas y la flecha de arriba*/
@@ -2422,23 +2422,23 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  color: #212529;
-  background-color: #d8a143;
-  border-color: #d69c39;
-  box-shadow: 0 0 0 0.2rem rgba(195, 156, 90, 0.5);
+  color: #041C19;
+  background-color: #087513;
+  border-color: #087513;
+  box-shadow: 0 0 0 0.2rem rgba(111, 195, 90, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
-  color: #212529;
-  background-color: #DFB163;
-  border-color: #DFB163;
+  color: #041C19;
+  background-color: #32612d;
+  border-color: #32612d;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  color: #212529;
-  background-color: #d69c39;
-  border-color: #d4972e;
+  color: #041C19;
+  background-color: #087513;
+  border-color: #087513;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -4116,7 +4116,7 @@ input[type="button"].btn-block {
   font-size: 1.25rem;
   line-height: 1;
   background-color: transparent;
-  border: 1px solid transparent;
+  border: 1px solid var(--rich-black);
 }
 
 .navbar-toggler:hover, .navbar-toggler:focus {

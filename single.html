@@ -104,42 +104,44 @@
     <!-- "Fin de la barra de navegación" -->
 
 
-    <!-- "Inicio de la sección debajo de la navegación" -->
-    <div class="container-fluid bg-timber-green py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 text-left mb-3 mb-lg-0">
-                    <div class="d-inline-flex text-left">
-                        <!--Charly cambio de color-->
-                        <h1 class="flaticon-office font-weight-normal text-success m-0 mr-3"></h1>
-                        <div class="d-flex flex-column">
-                            <h5 class="text-floral-white">Nuestras Oficinas</h5>
-                            <p class="m-0 text-floral-white">123 Street, New York, USA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-left text-lg-center mb-3 mb-lg-0">
-                    <div class="d-inline-flex text-left">
-                        <!--Charly cambio de color-->
-                        <h1 class="flaticon-email font-weight-normal text-success m-0 mr-3"></h1>
-                        <div class="d-flex flex-column">
-                            <!--color charly-->
-                            <h5 class="text-floral-white">Envianos un correo electrónico</h5>
-                            <p class="m-0 text-floral-white">momedproyectos@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-left text-lg-right mb-3 mb-lg-0">
-                    <div class="d-inline-flex text-left">
-                        <!--Charly cambio de color-->
-                        <h1 class="flaticon-telephone font-weight-normal text-success m-0 mr-3"></h1>
-                        <div class="d-flex flex-column">
-                            <!--color charly-->
-                            <h5 class="text-floral-white">Llámanos</h5>
-                            <p class="m-0 text-floral-white">+52 442 3440411</p>
-                        </div>
-                    </div>
-                </div>
+ <div class="container-fluid bg-timber-green py-3">
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <!-- Bloque Correo -->
+      <div class="col-lg-6 d-flex mb-3 mb-lg-0">
+  <div class="d-inline-flex text-left align-items-start">
+    <!-- Ícono de correo con enlace -->
+    <a href="mailto:momedproyectos@gmail.com" class="mr-3">
+      <i class="fas fa-envelope fa-2x" style="color: #075e54;"></i>
+    </a>
+    <!-- Texto e email -->
+    <div class="d-flex flex-column">
+      <h5 class="text-floral-white mb-1">Envíanos un correo electrónico</h5>
+      <a href="mailto:momedproyectos@gmail.com" class="text-floral-white" style="text-decoration: none;">
+        momedproyectos@gmail.com
+      </a>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Bloque WhatsApp -->
+      <div class="col-lg-6 d-flex">
+        <div class="d-inline-flex text-left align-items-start">
+          <a href="https://wa.me/524423440411" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
+                 alt="WhatsApp" 
+                 style="width: 36px; height: 36px;" class="mr-3">
+          </a>
+          <div class="d-flex flex-column">
+            <h5 class="text-floral-white mb-1">Contáctanos</h5>
+            <a href="https://wa.me/524423440411" target="_blank" class="text-floral-white" style="text-decoration: none;">
+              +52 442 3440411
+            </a>
+          </div>
+        </div>
+      </div>
             </div>
         </div>
     </div>
@@ -544,29 +546,50 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <audio id="musicaFondo" autoplay loop style="display: none;">
-  <source src="musica-fondo.mp3" type="audio/mpeg">
-  Tu navegador no soporta el audio HTML5.
-</audio>
-<button onclick="toggleAudio()" style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
-  🔊 Música
-</button>
+    <!-- Musica de Fondo Playlist mejorado por Charly -->
+    <audio id="musicaFondo" autoplay style="display: none;">
+    </audio>
 
-<script>
-  const audio = document.getElementById('musicaFondo');
-  let isPlaying = true;
+    <button onclick="toggleAudio()" class="bg-basil text-rich-black" style="position: fixed; top: 13px; right: 2px; z-index: 9999;">
+        🔊Música
+    </button>
 
-  function toggleAudio() {
-    if (isPlaying) {
-      audio.pause();
-      event.target.innerText = "🔇 Silenciado";
-    } else {
-      audio.play();
-      event.target.innerText = "🔊 Música";
-    }
-    isPlaying = !isPlaying;
-  }
-</script>
+    <script>
+        // Aqui se ponen las canciones 
+        const canciones = [
+            "Musica/musica-fondo.mp3", 
+            "cancion1.mp3",
+            "cancion2.mp3",
+            // puedes Agregar más canciones aquí:
+            // "cancion5.mp3",
+            // "cancion6.mp3",
+        ];
+
+        const audio = document.getElementById('musicaFondo');
+        let isPlaying = true;
+        let cancionActual = 0;
+
+        // Carga la primera canción
+        audio.src = canciones[cancionActual];
+
+        // Cuando termine una canción, se reproduce la siguiente automáticamente
+        audio.addEventListener('ended', function() {
+            cancionActual = (cancionActual + 1) % canciones.length; // Vuelve al inicio cuando termine la lista
+            audio.src = canciones[cancionActual];
+            audio.play(); // Reproduce automáticamente la siguiente cancion
+        });
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                event.target.innerText = "🔇Mute";
+            } else {
+                audio.play();
+                event.target.innerText = "🔊Música";
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
 
 </body>
 
