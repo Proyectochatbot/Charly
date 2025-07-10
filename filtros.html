@@ -6,17 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="Filtros, Diseño Interior, MOME">
   <meta name="description" content="Editor visual con filtros y texturas para diseño de interiores">
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="icon">
-  <!-- Tipografías y Estilos -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Flaticon Font -->
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+
   <link href="css/style.css" rel="stylesheet">
-  <style>
+</head>
+<style>
     body {
       font-family: 'Montserrat', sans-serif;
     }
@@ -67,7 +79,7 @@
     .filter-buttons button {
       margin: 10px;
       padding: 10px 20px;
-      background-color: #2c3e30;
+      background-color: #32612d;
       color: white;
       border: none;
       border-radius: 5px;
@@ -76,7 +88,7 @@
       cursor: pointer;
     }
     .filter-buttons button:hover {
-      background-color: #1a2621;
+      background-color: #32612d;
       transform: translateY(-2px);
     }
     .color-button {
@@ -100,7 +112,7 @@
     }
     h4 {
       margin-top: 50px;
-      color: #2c3e30;
+      color: #32612d;
     }
     .color-picker-container {
       margin: 20px 0;
@@ -160,7 +172,6 @@
       background-color: #c82333 !important;
     }
   </style>
-</head>
 <body>
   <!-- Inicio de la barra Superior -->
   <div class="container-fluid bg-rich-black py-3">
@@ -260,23 +271,24 @@
   <!-- Final de Navegación -->
 
   <!-- Inicio del encabezado de la página -->
-  <div class="container-fluid bg-rich-black py-5">
-    <div class="container py-5">
-      <div class="row align-items-center py-4">
-        <div class="col-md-6 text-center text-md-left">
-          <h1 class="mb-4 mb-md-0 text-floral-white text-uppercase">Filtros para tus espacios</h1>
+     <!--Charly camio de color de fondo-->
+    <div class="container-fluid bg-rich-black py-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="mb-4 mb-md-0 text-floral-white text-uppercase">Filtros para tus espacios</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn btn-outline-primary" href="">Hogar</a>
+                        <i class="fas fa-angle-double-right text-juniper mx-2"></i>
+                        <a class="btn btn-outline-primary disabled" href="">Editador Visual</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 text-center text-md-right">
-          <div class="d-inline-flex align-items-center">
-            <a class="btn btn-outline-primary" href="">Hogar</a>
-            <i class="fas fa-angle-double-right text-juniper mx-2"></i>
-            <a class="btn btn-outline-primary disabled" href="">Editador Visual</a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- Fin del encabezado de la página -->
+    <!-- Final del encabezado de la página -->
 
   <!-- CONTENIDO PRINCIPAL -->
  <!-- CONTENIDO PRINCIPAL -->
@@ -286,9 +298,9 @@
   <p id="actionInstruction">Sube tu imagen, selecciona áreas, aplica color y textura. Deja volar tu imaginacion</p>
 
   <!-- Subir imagen -->
-  <input type="file" id="upload" accept="image/*" class="btn">
-  <button class="btn" onclick="resetImage()">🔄 Resetear</button>
-  <button class="btn" onclick="clearSelection()">❌ Quitar Cambios</button>
+  <input type="file" id="upload" accept="image/*" class="btn-filtro">
+  <button class="btn-filtro" onclick="resetImage()">🔄 Resetear</button>
+  <button class="btn-filtro" onclick="clearSelection()">❌ Quitar Cambios</button>
 
   <!-- Tolerancia -->
   <div style="margin: 10px 0;">
@@ -298,8 +310,8 @@
 
   <!-- Modos de selección -->
   <div>
-    <button class="btn" onclick="mode='add'">➕ Seleccionar</button>
-    <button class="btn" onclick="mode='remove'">➖ Quitar Selección</button>
+    <button class="btn-filtro" onclick="mode='add'">➕ Seleccionar</button>
+    <button class="btn-filtro" onclick="mode='remove'">➖ Quitar Selección</button>
   </div>
 
   <!-- Canvas -->
@@ -311,33 +323,33 @@
   <input type="color" id="colorPicker" value="#FF0000">
 
   <!-- Aplicar -->
-  <button class="btn" onclick="applyColor()">✅ Aplicar Color</button>
+  <button class="btn-filtro" onclick="applyColor()">✅ Aplicar Color</button>
 
   <!-- Texturas -->
   <h3>Texturas</h3>
   <div id="textureBar">
-    <button class="btn" onclick="selectTexture('img/Textura de parede de tijolo moderno..jpg')">DIAMANTE</button>
-    <button class="btn" onclick="selectTexture('img/textura diamante pared.jpg')">DIAMANTE2</button>
-    <button class="btn" onclick="selectTexture('img/Pared piedra.jpg')">LADRILLO</button>
-    <button class="btn" onclick="selectTexture('img/textura marmol.jpg')">MARMOL</button>
+    <button class="btn-filtro" onclick="selectTexture('img/Textura de parede de tijolo moderno..jpg')">DIAMANTE</button>
+    <button class="btn-filtro" onclick="selectTexture('img/textura diamante pared.jpg')">DIAMANTE2</button>
+    <button class="btn-filtro" onclick="selectTexture('img/Pared piedra.jpg')">LADRILLO</button>
+    <button class="btn-filtro" onclick="selectTexture('img/textura marmol.jpg')">MARMOL</button>
   </div>
 
   <!-- Aplicar textura -->
   <div style="margin-top: 10px;">
-    <button class="btn" onclick="applyTextureOnly()">🖼️ Aplicar Solo Textura</button>
-    <button class="btn" onclick="applyTextureWithColor()">🎨 Mezclar con Color</button>
+    <button class="btn-filtro" onclick="applyTextureOnly()">🖼️ Aplicar Solo Textura</button>
+    <button class="btn-filtro" onclick="applyTextureWithColor()">🎨 Mezclar con Color</button>
   </div>
 
   <!-- Guardar y enviar -->
   <h3>Guardar o Enviar</h3>
-  <button class="btn" onclick="downloadImage()">💾 Descargar Imagen</button>
-  <button class="btn" onclick="sendEmail()">✉️ Enviar a Gmail</button>
+  <button class="btn-filtro" click="downloadImage()">💾 Descargar Imagen</button>
+  <button class="btn-filtro" onclick="sendEmail()">✉️ Enviar a Gmail</button>
 
 </div>
 
 <style>
-  .btn {
-    background: #333;
+  .btn-filtro{
+    background: #32612d;
     color: #fff;
     border: none;
     margin: 5px;
@@ -346,8 +358,8 @@
     cursor: pointer;
     transition: background 0.2s;
   }
-  .btn:hover {
-    background: #555;
+  .btn-filtro:hover {
+    background: #29961d;
   }
 </style>
 
@@ -763,11 +775,29 @@
   </button>
   <script>
     // Aqui se ponen las canciones 
-    const canciones = [
-      "Musica/musica-fondo.mp3", 
-      "cancion1.mp3",
-      "cancion2.mp3",
-    ];
+    const canciones = [ 
+            "Musica/Father Ocean.mp3",
+            "Musica/Give Me a Kiss.mp3",
+            "Musica/Hunting.mp3", 
+            "Musica/I know.mp3",
+            "Musica/I love You Always Forever.mp3",
+            "Musica/In Memoriam.mp3", 
+            "Musica/Jealous Girl.mp3",
+            "Musica/La Mer.mp3",
+            "Musica/Late Night Alumni.mp3", 
+            "Musica/Leaving Me.mp3",
+            "Musica/Lost Love.mp3",
+            "Musica/Love Story - Indila.mp3", 
+            "Musica/My life.mp3",
+            "Musica/My World.mp3",
+            "Musica/Norah Jones.mp3", 
+            "Musica/Romance.mp3",
+            "Musica/Stacey Kent.mp3",
+            "Musica/Studying You.mp3",
+            "Musica/Welcome Back.mp3",
+            "Musica/Withering.mp3",
+            "Musica/Coming Home.mp3"
+        ];
     const audio = document.getElementById('musicaFondo');
     let isPlaying = true;
     let cancionActual = 0;
