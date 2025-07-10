@@ -279,99 +279,299 @@
   <!-- Fin del encabezado de la página -->
 
   <!-- CONTENIDO PRINCIPAL -->
-  <div class="container container-filtros">
-    <h2 class="mb-4">Editor Visual de Paredes y Espacios</h2>
-    <p class="text-rich-black mb-4" style="max-width: 800px; margin: auto;">
-      Esta es la sección de filtros de imágenes para tu hogar. Aquí puedes subir una foto de tu espacio y aplicar diferentes colores y efectos visuales para visualizar cómo se vería con distintos materiales, acabados o colores. Perfecto para probar diferentes tonos de pintura en tus paredes.
-    </p>
+ <!-- CONTENIDO PRINCIPAL -->
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: auto;">
 
-    <!-- Subir imagen -->
-    <div class="mb-4">
-      <label for="imageUpload" class="btn btn-primary btn-lg">
-        <i class="fas fa-upload mr-2"></i>Subir Imagen de tu Pared
-      </label>
-      <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-    </div>
+  <h2>🎨 Editor Avanzado de Imagenes</h2>
+  <p id="actionInstruction">Sube tu imagen, selecciona áreas, aplica color y textura. Deja volar tu imaginacion</p>
 
-    <!-- Vista previa -->
-    <div class="preview">
-      <img id="uploadedImage" src="#" alt="Imagen subida">
-      <div id="colorOverlay"></div>
-      <img id="textureOverlay" src="/placeholder.svg" alt="">
-    </div>
+  <!-- Subir imagen -->
+  <input type="file" id="upload" accept="image/*" class="btn">
+  <button class="btn" onclick="resetImage()">🔄 Resetear</button>
+  <button class="btn" onclick="clearSelection()">❌ Quitar Cambios</button>
 
-    <!-- Colores predefinidos para paredes -->
-    <h4>Colores Populares para Paredes</h4>
-    <div class="filter-buttons">
-      <button class="color-button" style="background-color: #FFFFFF;" onclick="applyWallColor('#FFFFFF')" title="Blanco"></button>
-      <button class="color-button" style="background-color: #F5F5DC;" onclick="applyWallColor('#F5F5DC')" title="Beige"></button>
-      <button class="color-button" style="background-color: #D2B48C;" onclick="applyWallColor('#D2B48C')" title="Arena"></button>
-      <button class="color-button" style="background-color: #F0E68C;" onclick="applyWallColor('#F0E68C')" title="Amarillo Suave"></button>
-      <button class="color-button" style="background-color: #98FB98;" onclick="applyWallColor('#98FB98')" title="Verde Menta"></button>
-      <button class="color-button" style="background-color: #87CEEB;" onclick="applyWallColor('#87CEEB')" title="Azul Cielo"></button>
-      <button class="color-button" style="background-color: #DDA0DD;" onclick="applyWallColor('#DDA0DD')" title="Lavanda"></button>
-      <button class="color-button" style="background-color: #FFB6C1;" onclick="applyWallColor('#FFB6C1')" title="Rosa Suave"></button>
-      <button class="color-button" style="background-color: #FFDAB9;" onclick="applyWallColor('#FFDAB9')" title="Durazno"></button>
-      <button class="color-button" style="background-color: #E6E6FA;" onclick="applyWallColor('#E6E6FA')" title="Lila Claro"></button>
-      <button class="color-button" style="background-color: #F5DEB3;" onclick="applyWallColor('#F5DEB3')" title="Trigo"></button>
-      <button class="color-button" style="background-color: #D3D3D3;" onclick="applyWallColor('#D3D3D3')" title="Gris Claro"></button>
-    </div>
-
-    <!-- Selector de color personalizado -->
-    <h4>Color Personalizado</h4>
-    <div class="color-picker-container">
-      <label for="colorPicker">Elige tu color:</label>
-      <input type="color" id="colorPicker" value="#FFFFFF" onchange="applyCustomColor()">
-      <button onclick="applyCustomColor()" class="btn btn-success">Aplicar Color</button>
-    </div>
-
-    <!-- Control de intensidad -->
-    <div class="intensity-slider">
-      <label for="intensityRange">Intensidad del Color:</label><br>
-      <input type="range" id="intensityRange" min="0" max="100" value="60" onchange="updateIntensity()">
-      <span id="intensityValue">60%</span>
-    </div>
-
-    <!-- Filtros de efecto -->
-    <h4>Efectos Adicionales</h4>
-    <div class="filter-buttons">
-      <button onclick="applyFilter('brightness(1.2)')">Más Brillo</button>
-      <button onclick="applyFilter('brightness(0.8)')">Menos Brillo</button>
-      <button onclick="applyFilter('contrast(1.3)')">Más Contraste</button>
-      <button onclick="applyFilter('saturate(1.5)')">Más Saturación</button>
-      <button onclick="applyFilter('none')">Sin Efectos</button>
-    </div>
-
-    <!-- Filtros de textura -->
-    <h4>Aplicar Texturas Visuales</h4>
-    <div class="filter-buttons d-flex flex-wrap justify-content-center">
-      <button onclick="applyTexture('/placeholder.svg?height=200&width=200&text=Madera')">
-        <img src="img/Madera.jpg" alt="Madera">
-        <div>Madera</div>
-      </button>
-      <button onclick="applyTexture('/placeholder.svg?height=200&width=200&text=Piedra')">
-        <img src="img/Piedra.jpg" alt="Piedra">
-        <div>Piedra</div>
-      </button>
-      <button onclick="applyTexture('/placeholder.svg?height=200&width=200&text=Ladrillo')">
-        <img src="img/Ladrillo.jfif" alt="Ladrillo">
-        <div>Ladrillo</div>
-      </button>
-      <button onclick="applyTexture('')">
-        <span style="display:inline-block; width:60px; height:60px; background-color:#ddd; border-radius:5px; line-height:60px;">❌</span>
-        <div>Sin Textura</div>
-      </button>
-    </div>
-
-    <!-- Botón de reset -->
-    <div class="mt-4">
-      <button onclick="resetAll()" class="btn btn-lg reset-button">
-        <i class="fas fa-undo mr-2"></i>Resetear Todo
-      </button>
-    </div>
+  <!-- Tolerancia -->
+  <div style="margin: 10px 0;">
+    <label>Tolerancia: <span id="tolVal">30</span></label>
+    <input type="range" id="tolerance" min="1" max="100" value="30" style="width:200px;">
   </div>
 
-  <!-- FOOTER -->
+  <!-- Modos de selección -->
+  <div>
+    <button class="btn" onclick="mode='add'">➕ Seleccionar</button>
+    <button class="btn" onclick="mode='remove'">➖ Quitar Selección</button>
+  </div>
+
+  <!-- Canvas -->
+  <canvas id="canvas" width="800" height="600" style="border:1px solid #333; margin:10px auto; cursor:crosshair;"></canvas>
+
+  <!-- Barra de colores -->
+  <h3>Colores</h3>
+  <div id="colorBar" style="margin-bottom:10px;"></div>
+  <input type="color" id="colorPicker" value="#FF0000">
+
+  <!-- Aplicar -->
+  <button class="btn" onclick="applyColor()">✅ Aplicar Color</button>
+
+  <!-- Texturas -->
+  <h3>Texturas</h3>
+  <div id="textureBar">
+    <button class="btn" onclick="selectTexture('img/Textura de parede de tijolo moderno..jpg')">DIAMANTE</button>
+    <button class="btn" onclick="selectTexture('img/textura diamante pared.jpg')">DIAMANTE2</button>
+    <button class="btn" onclick="selectTexture('img/Pared piedra.jpg')">LADRILLO</button>
+    <button class="btn" onclick="selectTexture('img/textura marmol.jpg')">MARMOL</button>
+  </div>
+
+  <!-- Aplicar textura -->
+  <div style="margin-top: 10px;">
+    <button class="btn" onclick="applyTextureOnly()">🖼️ Aplicar Solo Textura</button>
+    <button class="btn" onclick="applyTextureWithColor()">🎨 Mezclar con Color</button>
+  </div>
+
+  <!-- Guardar y enviar -->
+  <h3>Guardar o Enviar</h3>
+  <button class="btn" onclick="downloadImage()">💾 Descargar Imagen</button>
+  <button class="btn" onclick="sendEmail()">✉️ Enviar a Gmail</button>
+
+</div>
+
+<style>
+  .btn {
+    background: #333;
+    color: #fff;
+    border: none;
+    margin: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn:hover {
+    background: #555;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  let img = new Image();
+  let originalData;
+  let workingData;
+  let selectedPixels = new Set();
+  let mode = 'add';
+  let selectedTexture = null;
+
+  const colors = [
+    '#FFFFFF','#F5F5DC','#D2B48C','#98FB98',
+    '#87CEEB','#FFB6C1','#FFD700','#FF4500',
+    '#6A5ACD','#008080'
+  ];
+  const colorBar = document.getElementById('colorBar');
+  colors.forEach(c => {
+    const btn = document.createElement('button');
+    btn.style.background = c;
+    btn.style.width = '40px';
+    btn.style.height = '40px';
+    btn.style.margin = '3px';
+    btn.style.border = '2px solid #444';
+    btn.style.borderRadius = '50%';
+    btn.onclick = () => {
+      document.getElementById('colorPicker').value = c;
+    };
+    colorBar.appendChild(btn);
+  });
+
+  document.getElementById('upload').onchange = (e) => {
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        originalData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        workingData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        selectedPixels.clear();
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  document.getElementById('tolerance').oninput = (e) => {
+    document.getElementById('tolVal').innerText = e.target.value;
+  };
+
+  canvas.addEventListener('click', function(e) {
+    if (!workingData) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor(e.clientX - rect.left);
+    const y = Math.floor(e.clientY - rect.top);
+    const idx = (y * canvas.width + x) * 4;
+    const target = [
+      workingData.data[idx],
+      workingData.data[idx + 1],
+      workingData.data[idx + 2]
+    ];
+    const tol = parseInt(document.getElementById('tolerance').value);
+    const visited = new Uint8Array(workingData.width * workingData.height);
+
+    function floodFill(x, y) {
+      const stack = [[x, y]];
+      while (stack.length) {
+        const [nx, ny] = stack.pop();
+        if (nx < 0 || ny < 0 || nx >= workingData.width || ny >= workingData.height) continue;
+        const i = ny * workingData.width + nx;
+        if (visited[i]) continue;
+        const idx = i * 4;
+        const pixel = [
+          workingData.data[idx],
+          workingData.data[idx + 1],
+          workingData.data[idx + 2]
+        ];
+        if (colorDistance(pixel, target) < tol) {
+          if (mode === 'add') {
+            selectedPixels.add(i);
+          } else if (mode === 'remove') {
+            selectedPixels.delete(i);
+          }
+          visited[i] = 1;
+          stack.push([nx + 1, ny]);
+          stack.push([nx - 1, ny]);
+          stack.push([nx, ny + 1]);
+          stack.push([nx, ny - 1]);
+        }
+      }
+    }
+
+    floodFill(x, y);
+    highlightSelection();
+    document.getElementById('actionInstruction').innerText = mode === 'add' ? 
+      "✅ Área añadida." : "➖ Área removida.";
+  });
+
+  function colorDistance(c1, c2) {
+    return Math.sqrt(
+      (c1[0] - c2[0]) ** 2 +
+      (c1[1] - c2[1]) ** 2 +
+      (c1[2] - c2[2]) ** 2
+    );
+  }
+
+  function highlightSelection() {
+    let temp = ctx.createImageData(workingData);
+    temp.data.set(workingData.data);
+    selectedPixels.forEach(i => {
+      const idx = i * 4;
+      temp.data[idx] = 255;
+      temp.data[idx + 1] = 0;
+      temp.data[idx + 2] = 0;
+    });
+    ctx.putImageData(temp, 0, 0);
+  }
+
+  function applyColor() {
+    if (selectedPixels.size === 0) return alert("Selecciona un área primero.");
+    const color = hexToRgb(document.getElementById('colorPicker').value);
+    selectedPixels.forEach(i => {
+      const idx = i * 4;
+      workingData.data[idx] = color.r;
+      workingData.data[idx + 1] = color.g;
+      workingData.data[idx + 2] = color.b;
+    });
+    ctx.putImageData(workingData, 0, 0);
+  }
+
+  function selectTexture(src) {
+    selectedTexture = src;
+    document.getElementById('actionInstruction').innerText = "🎨 Textura seleccionada. Aplica con el botón.";
+  }
+
+  function applyTextureOnly() {
+    if (!selectedTexture) return alert("Selecciona una textura primero.");
+    const img = new Image();
+    img.onload = () => {
+      const patternCanvas = document.createElement('canvas');
+      patternCanvas.width = canvas.width;
+      patternCanvas.height = canvas.height;
+      const pctx = patternCanvas.getContext('2d');
+      pctx.fillStyle = pctx.createPattern(img, 'repeat');
+      pctx.fillRect(0, 0, canvas.width, canvas.height);
+      const textureData = pctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      selectedPixels.forEach(i => {
+        const idx = i * 4;
+        workingData.data[idx] = textureData.data[idx];
+        workingData.data[idx + 1] = textureData.data[idx + 1];
+        workingData.data[idx + 2] = textureData.data[idx + 2];
+      });
+
+      ctx.putImageData(workingData, 0, 0);
+    };
+    img.src = selectedTexture;
+  }
+
+  function applyTextureWithColor() {
+    if (!selectedTexture) return alert("Selecciona una textura primero.");
+    const color = hexToRgb(document.getElementById('colorPicker').value);
+
+    const img = new Image();
+    img.onload = () => {
+      const patternCanvas = document.createElement('canvas');
+      patternCanvas.width = canvas.width;
+      patternCanvas.height = canvas.height;
+      const pctx = patternCanvas.getContext('2d');
+      pctx.fillStyle = pctx.createPattern(img, 'repeat');
+      pctx.fillRect(0, 0, canvas.width, canvas.height);
+      const textureData = pctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      selectedPixels.forEach(i => {
+        const idx = i * 4;
+        workingData.data[idx] = (color.r + textureData.data[idx]) / 2;
+        workingData.data[idx + 1] = (color.g + textureData.data[idx + 1]) / 2;
+        workingData.data[idx + 2] = (color.b + textureData.data[idx + 2]) / 2;
+      });
+
+      ctx.putImageData(workingData, 0, 0);
+    };
+    img.src = selectedTexture;
+  }
+
+  function hexToRgb(hex) {
+    const bigint = parseInt(hex.slice(1), 16);
+    return {
+      r: (bigint >> 16) & 255,
+      g: (bigint >> 8) & 255,
+      b: bigint & 255
+    };
+  }
+
+  function resetImage() {
+    if (!originalData) return;
+    workingData = ctx.createImageData(originalData);
+    workingData.data.set(originalData.data);
+    ctx.putImageData(workingData, 0, 0);
+    selectedPixels.clear();
+  }
+
+  function clearSelection() {
+    resetImage();
+  }
+
+  function downloadImage() {
+    const link = document.createElement('a');
+    link.download = 'imagen_editada.png';
+    link.href = canvas.toDataURL();
+    link.click();
+  }
+
+ function sendEmail() {
+  const subject = encodeURIComponent("Imagen Editada");
+  const body = encodeURIComponent("Adjunto la imagen editada desde el editor.");
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=momedproyectos@gmail.com&su=${subject}&body=${body}`;
+  window.open(gmailUrl, '_blank');
+}
+</script>
+<!-- FIN DEL CONTENIDO PRINCIPAL -->
   <div class="container-fluid bg-rich-black text-timber-green py-5 px-sm-3 px-md-5">
     <div class="row pt-5">
       <div class="col-lg-3 col-md-6 mb-5">
