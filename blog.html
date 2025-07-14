@@ -12,7 +12,7 @@
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet"> 
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -26,10 +26,173 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Estilos para revista PDF -->
+    <style>
+        .magazine-container {
+            background: #f8f9fa;
+            padding: 50px 0;
+        }
+        
+        .magazine-page {
+            background: white;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+        
+        .magazine-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #03ac13;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            border-bottom: 3px solid #03ac13;
+            padding-bottom: 20px;
+        }
+        
+        .magazine-content {
+            columns: 3;
+            column-gap: 30px;
+            column-rule: 1px solid #e0e0e0;
+            text-align: justify;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        
+        .magazine-image {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .image-left {
+            float: left;
+            margin: 0 20px 15px 0;
+            shape-outside: margin-box;
+        }
+        
+        .image-right {
+            float: right;
+            margin: 0 0 15px 20px;
+            shape-outside: margin-box;
+        }
+        
+        .image-center {
+            display: block;
+            margin: 20px auto;
+            clear: both;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: #03ac13;
+            font-size: 1.1rem;
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .question-title {
+            font-weight: 600;
+            color: #03ac13;
+            font-size: 1rem;
+            margin: 15px 0 8px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .highlight-text {
+            background: linear-gradient(120deg, #c3ffa7 0%, #acffa4 100%);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .applications-banner {
+            background: linear-gradient(135deg, #32612d, #03ac13);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            column-span: all;
+        }
+        
+        .conclusion-box {
+            background: #f8f9fa;
+            border-left: 5px solid #03ac13;
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            text-align: center;
+            border-radius: 0 10px 10px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            column-span: all;
+        }
+        
+        .dropcap {
+            float: left;
+            font-size: 4rem;
+            line-height: 3rem;
+            padding-right: 8px;
+            padding-top: 4px;
+            font-weight: 700;
+            color: #03ac13;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .magazine-content {
+                columns: 1;
+                column-rule: none;
+            }
+            
+            .magazine-page {
+                padding: 30px 20px;
+            }
+            
+            .magazine-title {
+                font-size: 1.6rem;
+            }
+            
+            .image-left, .image-right {
+                float: none;
+                display: block;
+                margin: 15px auto;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .magazine-content {
+                columns: 2;
+            }
+        }
+    </style>
 </head>
 
-<!-- Inicio de la barra de Navegación -->
 <body>
+    <!-- Navegación existente -->
     <div class="container-fluid bg-rich-black py-3">
         <div class="container">
             <div class="row">
@@ -43,45 +206,36 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
-                    <!--Charly, agregado y redireccion a la red social de Facebook-->
                     <div class="d-inline-flex align-items-center">
                         <a class="text-white px-3" 
-   href="https://www.facebook.com/p/MOMED-100075915498484/" 
-   target="_blank" 
-   rel="noopener noreferrer">
-   <i class="fab fa-facebook-f"></i></a>
+                           href="https://www.facebook.com/p/MOMED-100075915498484/" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                           <i class="fab fa-facebook-f"></i>
                         </a>
-                        </a>
-                        </a>
-                        <!--Charly, Agregado y redireccion a la red social de Instagram-->
                         <a class="text-white px-3" 
-   href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" 
-   target="_blank" 
-   rel="noopener noreferrer">
-   <i class="fab fa-instagram"></i></a>
+                           href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                           <i class="fab fa-instagram"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- "Final de la barra superior". -->
-    
+
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container position-relative" style="z-index: 9;">
-            <!--charly Cambio el color-->
             <nav class="navbar navbar-expand-lg bg-floral-white navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
                 <a href="" class="navbar-brand">
-                   <!--DAYAN:CAMBIO RUTA DE LOGO DE TEXTO A LOGO DE IMAGEN-->
                    <img src="img/Logo.jpg" alt="Logo MOMED" style="height: 150px;">
-
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <!--Brayan:CAMBIO TEXTOs A Español-->
                         <a href="index.html" class="nav-item text-rich-black nav-link active">Hogar</a>
                         <a href="about.html" class="nav-item text-timber-green nav-link">Acerca de</a>
                         <a href="service.html" class="nav-item text-timber-green nav-link">Servicio</a>
@@ -100,53 +254,42 @@
             </nav>
         </div>
     </div>
-    <!-- Final de la barra de Navegación -->
 
-   <div class="container-fluid bg-timber-green py-3">
-  <div class="container">
-    <div class="row justify-content-center">
-
-      <!-- Bloque Correo -->
-      <div class="col-lg-6 d-flex mb-3 mb-lg-0">
-  <div class="d-inline-flex text-left align-items-start">
-    <!-- Ícono de correo con enlace -->
-    <a href="mailto:momedproyectos@gmail.com" class="mr-3">
-      <i class="fas fa-envelope fa-2x" style="color: #075e54;"></i>
-    </a>
-    <!-- Texto e email -->
-    <div class="d-flex flex-column">
-      <h5 class="text-floral-white mb-1">Envíanos un correo electrónico</h5>
-      <a href="mailto:momedproyectos@gmail.com" class="text-floral-white" style="text-decoration: none;">
-        momedproyectos@gmail.com
-      </a>
-    </div>
-  </div>
-</div>
-
-
-      <!-- Bloque WhatsApp -->
-      <div class="col-lg-6 d-flex">
-        <div class="d-inline-flex text-left align-items-start">
-          <a href="https://wa.me/524423440411" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
-                 alt="WhatsApp" 
-                 style="width: 36px; height: 36px;" class="mr-3">
-          </a>
-          <div class="d-flex flex-column">
-            <h5 class="text-floral-white mb-1">Contáctanos</h5>
-            <a href="https://wa.me/524423440411" target="_blank" class="text-floral-white" style="text-decoration: none;">
-              +52 442 3440411
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="container-fluid bg-timber-green py-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 d-flex mb-3 mb-lg-0">
+                    <div class="d-inline-flex text-left align-items-start">
+                        <a href="mailto:momedproyectos@gmail.com" class="mr-3">
+                            <i class="fas fa-envelope fa-2x" style="color: #075e54;"></i>
+                        </a>
+                        <div class="d-flex flex-column">
+                            <h5 class="text-floral-white mb-1">Envíanos un correo electrónico</h5>
+                            <a href="mailto:momedproyectos@gmail.com" class="text-floral-white" style="text-decoration: none;">
+                                momedproyectos@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex">
+                    <div class="d-inline-flex text-left align-items-start">
+                        <a href="https://wa.me/524423440411" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" 
+                                 alt="WhatsApp" 
+                                 style="width: 36px; height: 36px;" class="mr-3">
+                        </a>
+                        <div class="d-flex flex-column">
+                            <h5 class="text-floral-white mb-1">Contáctanos</h5>
+                            <a href="https://wa.me/524423440411" target="_blank" class="text-floral-white" style="text-decoration: none;">
+                                +52 442 3440411
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- "Final de la sección debajo de la navegación" -->
 
-
-    <!-- "Inicio del encabezado de la página". -->
     <div class="container-fluid bg-rich-black py-5">
         <div class="container py-5">
             <div class="row align-items-center py-4">
@@ -163,142 +306,85 @@
             </div>
         </div>
     </div>
-    <!-- "Final del encabezado de la página". -->
 
-
-    <!-- "Inicio de la sección del blog". -->
-    <div class="container-fluid bg-light pt-5">
-        <div class="container py-5">
+    <!-- REVISTA ESTILO PDF -->
+    <div class="magazine-container">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8 col text-center mb-4">
-                    <h6 class="text-shamrock font-weight-normal text-uppercase mb-3">Detrás de Cada Diseño</h6>
-                    <h1 class="mb-4">NEUROARQUITECTURA: EL PODER DEL ESPACIO SOBRE TU MENTE</h1>
+                    <h1 class="text-center text-shamrock">Detrás de Cada Diseño</h1>
                 </div>
             </div>
-            <div class="row pb-3">
-                <div class="col-md-4 mb-4">
-                    <div class="card border-0 mb-2">
-                      
-                                
-                            </div>
-                        </div>
+
+            <div class="magazine-page">
+                <h1 class="magazine-title">NEUROARQUITECTURA: EL PODER DEL ESPACIO SOBRE TU MENTE</h1>
+                
+                <div class="magazine-content">
+                    <div class="question-title">- ¿Qué es la Neuroarquitectura?</div>
+                    <p><span class="dropcap">D</span>isciplina que une la arquitectura con la neurociencia para diseñar espacios que respondan a cómo funciona nuestro cerebro. Se enfoca en cómo los entornos influyen en nuestro estado emocional, comportamiento, salud y productividad. Crea lugares que nos hagan sentir mejor de forma consciente y natural.</p>
+
+                    <img src="img/REVISTAA3.jpg" alt="Neuroarquitectura" class="magazine-image image-right">
+
+                    <div class="question-title">- Beneficios clave</div>
+                    <p><strong class="highlight-text">Reduce el estrés:</strong> Espacios con luz natural, vegetación, materiales cálidos.</p>
+                    
+                    <p><strong class="highlight-text">Mejora la concentración:</strong> Buena ventilación, acústica, control sensorial.</p>
+                    
+                    <p><strong class="highlight-text">Fomenta el bienestar emocional:</strong> Colores suaves, texturas agradables.</p>
+                    
+                    <p><strong class="highlight-text">Aumenta la productividad:</strong> Orden, luz y ventilación.</p>
+
+                    <img src="img/REVISTAA2.jpg" alt="Dormitorio relajante" class="magazine-image image-left">
+
+                    <div class="question-title">– ¿Dónde se aplica?</div>
+                    <p><strong class="highlight-text">Casa:</strong> Dormitorios relajantes, cocinas abiertas.</p>
+                    
+                    <p><strong class="highlight-text">Oficinas:</strong> Plantas, escritorios ergonómicos, áreas de descanso.</p>
+                    
+                    <p><strong class="highlight-text">Hospitales:</strong> Vistas a la naturaleza, pasillos tranquilos.</p>
+                    
+                    <p><strong class="highlight-text">Escuelas:</strong> Colores estimulantes, zonas de juego/estudio integradas.</p>
+
+                    <img src="img/REVISTAA1.jpg" alt="Sala armoniosa" class="magazine-image image-center">
+
+                    <div class="applications-banner">APLICACIONES</div>
+
+                    <div class="conclusion-box">
+                        <p><strong>La neuroarquitectura propone un diseño más humano y consciente.</strong></p>
+                        <p><em>Invertir en neuroarquitectura es invertir en calidad de vida.</em></p>
                     </div>
                 </div>
-     
-
-     <div class="container">
-
-    <!-- Imagen principal más pequeña -->
-    <div class="row mb-4">
-        <div class="container-fluid px-0">
-    <img src="img/REVISTAA3.jpg" style="width: 100%; height: 700px; object-fit: cover; display: block;" alt="Imagen">
-</div>
-
-            
-
-
-        </div>
-    </div>
-
- 
-
-    <!-- Texto a la derecha -->
-    <div class="col-lg-6 col-md-12">
-        <p class="text-dark" style="font-size: 1rem; line-height: 1.8; text-align: justify;">
-            <strong>– ¿Qué es la Neuroarquitectura?</strong><br>
-            Disciplina que une la arquitectura con la neurociencia para diseñar espacios que respondan a cómo funciona nuestro cerebro. Se enfoca en cómo los entornos influyen en nuestro estado emocional, comportamiento, salud y productividad. Crea lugares que nos hagan sentir mejor de forma consciente y natural.
-        </p>
-        <h5 class="text-success mb-2">Beneficios clave</h5>
-        <ul class="text-dark" style="font-size: 1rem; line-height: 1.8;">
-            <li><strong>Reduce el estrés:</strong> Espacios con luz natural, vegetación, materiales cálidos.</li>
-            <li><strong>Mejora la concentración:</strong> Buena ventilación, acústica, control sensorial.</li>
-            <li><strong>Fomenta el bienestar emocional:</strong> Colores suaves, texturas agradables.</li>
-            <li><strong>Aumenta la productividad:</strong> Orden, luz y ventilación.</li>
-        </ul>
-    </div>
-</div>
-
-
-    <!-- Imagen secundaria + Aplicaciones -->
-    <div class="row mb-5 align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="img/REVISTAA2.jpg" class="img-fluid rounded mb-3" style="max-width: 70%; height: auto;" alt="Dormitorio relajante">
-        </div>
-         <div class="col-lg-6 col-md-12">
-        <p class="text-dark" style="font-size: 1rem; line-height: 1.8; text-align: justify;">
-            <h5 class="text-success">Aplicaciones</h5>
-            <p class="text-dark" style="font-size: 1rem; line-height: 1.8;">
-                <strong>¿Dónde se aplica?</strong><br>
-                <strong>Casa:</strong> Dormitorios relajantes, cocinas abiertas.<br>
-                <strong>Oficinas:</strong> Plantas, escritorios ergonómicos, áreas de descanso.<br>
-                <strong>Hospitales:</strong> Vistas a la naturaleza, pasillos tranquilos.<br>
-                <strong>Escuelas:</strong> Colores estimulantes, zonas de juego/estudio integradas.
-            </p>
-        </div>
-    </div>
-
-    <!-- Imagen final + frase -->
-    <div class="row">
-        <div class="col-12 text-center">
-            <img src="img/REVISTAA1.jpg" class="img-fluid rounded mb-4" style="max-width: 50%; height: auto;" alt="Sala armoniosa">
-            <p class="text-dark font-italic" style="font-size: 1rem;">
-                La neuroarquitectura propone un diseño más humano y consciente.<br>
-                <strong>Invertir en neuroarquitectura es invertir en calidad de vida.</strong>
-            </p>
-        </div>
-    </div>
-
-</div>
-
-
-             
-                        
-                        
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                </div>
             </div>
         </div>
     </div>
-    <!-- "Final de la sección del blog". -->
 
-
-    <!-- Inicio del Pie de Pagina -->
-    <!--Charly cambio el color de Rich-black-->
+    <!-- Footer existente -->
     <div class="container-fluid bg-rich-black text-timber-green py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-3 col-md-6 mb-5">
-                <!--Charly agregado del color-->
                 <h4 class="text-shamrock mb-4">Contáctanos</h4>
                 <p class="text-floral-white"><i class="fa text-floral-white fa-phone-alt mr-2"></i>+52 442 3440411</p>
                 <p class="text-floral-white"><i class="fa text-floral-white fa-phone-alt mr-2"></i>+52 442 3451559</p>
                 <p class="text-floral-white"><i class="fa text-floral-white fa-envelope mr-2"></i>momedproyectos@gmail.com</p>
                 <div class="d-flex justify-content-start mt-4">
-                <!--Charly, Agregado y redireccion a la red social de Facebook-->
                     <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" 
-   style="width: 38px; height: 38px;" 
-   href="https://www.facebook.com/p/MOMED-100075915498484/" 
-   target="_blank" 
-   rel="noopener noreferrer">
-   <i class="fab fa-facebook-f"></i>
-</a>
-                <!--Charly, Agregado y redireccion a la red social de Instagram-->
+                       style="width: 38px; height: 38px;" 
+                       href="https://www.facebook.com/p/MOMED-100075915498484/" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                       <i class="fab fa-facebook-f"></i>
+                    </a>
                     <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" 
-   style="width: 38px; height: 38px;" 
-   href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" 
-   target="_blank" 
-   rel="noopener noreferrer">
-   <i class="fab fa-instagram"></i>
-</a>
+                       style="width: 38px; height: 38px;" 
+                       href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                       <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
-                <!--Charly cambio del color-->
-                <h4 class="text-shamrock mb-4">Accesos Directos
-
-                </h4>
+                <h4 class="text-shamrock mb-4">Accesos Directos</h4>
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Inicio</a>
                     <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Sobre Nosotros</a>
@@ -308,7 +394,6 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
-                <!--Charly agregado del color-->
                 <h4 class="text-shamrock mb-4">Secciones Populares</h4>
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Inicio</a>
@@ -319,7 +404,6 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
-                <!--Charly agregado del color-->
                 <h4 class="text-shamrock mb-4">Conéctate con Nosotros</h4>
                 <form action="">
                     <div class="form-group">
@@ -337,42 +421,30 @@
         <div class="container border-top border-secondary pt-5">
             <p class="m-0 text-center text-white">
                 &copy; <a class="text-white font-weight-bold" href="#">MOMED</a>. Todos los derechos reservados.
-                <a class="text-white font-weight-bold" href="https://htmlcodex.com"></a>
             </p>
         </div>
     </div>
-    <!-- Final del Pie de Pagina  -->
 
-
-    <!-- "Ir al inicio de la página". -->
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
-    <!-- JavaScript Librerias -->
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-    <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <!-- Musica de Fondo Playlist mejorado por Charly -->
-    <audio id="musicaFondo" autoplay style="display: none;">
-    </audio>
-
+    <!-- Música de fondo -->
+    <audio id="musicaFondo" autoplay style="display: none;"></audio>
     <button onclick="toggleAudio()" class="bg-basil text-rich-black" style="position: fixed; top: 13px; right: 2px; z-index: 9999;">
         🔊Música
     </button>
 
     <script>
-        // Aqui se ponen las canciones 
         const canciones = [ 
             "Musica/Hunting.mp3", 
             "Musica/I know.mp3",
@@ -401,14 +473,12 @@
         let isPlaying = true;
         let cancionActual = 0;
 
-        // Carga la primera canción
         audio.src = canciones[cancionActual];
 
-        // Cuando termine una canción, se reproduce la siguiente automáticamente
         audio.addEventListener('ended', function() {
-            cancionActual = (cancionActual + 1) % canciones.length; // Vuelve al inicio cuando termine la lista
+            cancionActual = (cancionActual + 1) % canciones.length;
             audio.src = canciones[cancionActual];
-            audio.play(); // Reproduce automáticamente la siguiente cancion
+            audio.play();
         });
 
         function toggleAudio() {
