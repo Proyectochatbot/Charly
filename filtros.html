@@ -6,23 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="Filtros, Diseño Interior, MOME">
   <meta name="description" content="Editor visual con filtros y texturas para diseño de interiores">
-
   <!-- Favicon -->
   <link href="img/favicon.ico" rel="icon">
-
   <!-- Google Web Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
-
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
   <!-- Flaticon Font -->
   <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
-
   <!-- Libraries Stylesheet -->
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
   <!-- Customized Bootstrap Stylesheet -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -166,7 +160,7 @@
     .reset-button:hover {
       background-color: #c82333 !important;
     }
-  </style>
+</style>
 <body>
   <!-- Inicio de la barra Superior -->
   <div class="container-fluid bg-rich-black py-3">
@@ -195,7 +189,6 @@
     </div>
   </div>
   <!-- Final de la barra Superior -->
-
   <!-- Navbar -->
   <div class="container-fluid position-relative nav-bar p-0">
     <div class="container position-relative" style="z-index: 9;">
@@ -227,7 +220,6 @@
     </div>
   </div>
   <!-- Fin Navbar -->
-
   <!-- Inicio de Navegación -->
   <div class="container-fluid bg-timber-green py-3">
     <div class="container">
@@ -264,7 +256,6 @@
     </div>
   </div>
   <!-- Final de Navegación -->
-
   <!-- Inicio del encabezado de la página -->
     <div class="container-fluid bg-rich-black py-5">
         <div class="container py-5">
@@ -283,7 +274,6 @@
         </div>
     </div>
     <!-- Final del encabezado de la página -->
-
   <!-- CONTENIDO PRINCIPAL -->
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: auto;">
   <h2>Transforma tu Espacio en Instantes</h2>
@@ -375,11 +365,45 @@
     const reader = new FileReader();
     reader.onload = function(evt) {
       img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
+        // --- INICIO DE LA MODIFICACIÓN ---
+        // El canvas ya tiene dimensiones fijas (width="800" height="600") en el HTML.
+        // No necesitamos cambiar el tamaño del canvas aquí.
+        // canvas.width = img.width; // ELIMINADO
+        // canvas.height = img.height; // ELIMINADO
+
+        // Limpiar el canvas antes de dibujar la nueva imagen
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Calcular el factor de escala para que la imagen quepa dentro del canvas manteniendo su relación de aspecto
+        const imgAspectRatio = img.width / img.height;
+        const canvasAspectRatio = canvas.width / canvas.height;
+
+        let drawWidth;
+        let drawHeight;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        if (imgAspectRatio > canvasAspectRatio) {
+          // La imagen es más ancha que el canvas, escalamos en base al ancho del canvas
+          drawWidth = canvas.width;
+          drawHeight = canvas.width / imgAspectRatio;
+          offsetY = (canvas.height - drawHeight) / 2; // Centrar verticalmente
+        } else {
+          // La imagen es más alta o tiene la misma relación de aspecto, escalamos en base a la altura del canvas
+          drawHeight = canvas.height;
+          drawWidth = canvas.height * imgAspectRatio;
+          offsetX = (canvas.width - drawWidth) / 2; // Centrar horizontalmente
+        }
+
+        // Dibujar la imagen escalada y centrada dentro del canvas fijo
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+
+        // Obtener los datos de la imagen del canvas fijo después de dibujarla
         originalData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        workingData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        workingData = ctx.createImageData(originalData); // Crear un nuevo ImageData
+        workingData.data.set(originalData.data); // Copiar los datos de píxeles
+        // --- FIN DE LA MODIFICACIÓN ---
+
         selectedPixels.clear();
       };
       img.src = evt.target.result;
@@ -620,28 +644,28 @@
     // Aqui se ponen las canciones
     const canciones = [
              "Musica/Lost Love.mp3",
-            "Musica/Father Ocean.mp3",
-            "Musica/Give Me a Kiss.mp3",
-            "Musica/Hunting.mp3",
-             "Musica/I know.mp3",
-            "Musica/I love You Always Forever.mp3",
-            "Musica/In Memoriam.mp3",
-             "Musica/Jealous Girl.mp3",
-            "Musica/La Mer.mp3",
-            "Musica/Late Night Alumni.mp3",
-             "Musica/Leaving Me.mp3",
-            "Musica/Father Ocean.mp3",
-            "Musica/Love Story - Indila.mp3",
-             "Musica/My life.mp3",
-            "Musica/My World.mp3",
-            "Musica/Norah Jones.mp3",
-             "Musica/Romance.mp3",
-            "Musica/Stacey Kent.mp3",
-            "Musica/Studying You.mp3",
-            "Musica/Welcome Back.mp3",
-            "Musica/Withering.mp3",
-            "Musica/Coming Home.mp3"
-        ];
+             "Musica/Father Ocean.mp3",
+             "Musica/Give Me a Kiss.mp3",
+             "Musica/Hunting.mp3",
+              "Musica/I know.mp3",
+             "Musica/I love You Always Forever.mp3",
+             "Musica/In Memoriam.mp3",
+              "Musica/Jealous Girl.mp3",
+             "Musica/La Mer.mp3",
+             "Musica/Late Night Alumni.mp3",
+              "Musica/Leaving Me.mp3",
+             "Musica/Father Ocean.mp3",
+             "Musica/Love Story - Indila.mp3",
+              "Musica/My life.mp3",
+             "Musica/My World.mp3",
+             "Musica/Norah Jones.mp3",
+              "Musica/Romance.mp3",
+             "Musica/Stacey Kent.mp3",
+             "Musica/Studying You.mp3",
+             "Musica/Welcome Back.mp3",
+             "Musica/Withering.mp3",
+             "Musica/Coming Home.mp3"
+         ];
     const audio = document.getElementById('musicaFondo');
     let isPlaying = true;
     let cancionActual = 0;
