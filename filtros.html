@@ -6,26 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="Filtros, Diseño Interior, MOME">
   <meta name="description" content="Editor visual con filtros y texturas para diseño de interiores">
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet"> 
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Flaticon Font -->
-    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <!-- Flaticon Font -->
+  <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+  <!-- Libraries Stylesheet -->
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
 <style>
@@ -135,24 +134,20 @@
       background: none;
       padding: 0;
     }
-
     #colorPicker::-webkit-color-swatch-wrapper {
       padding: 0;
       border: none;
       border-radius: 50%;
     }
-
     #colorPicker::-webkit-color-swatch {
       border: none;
       border-radius: 50%;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
     #colorPicker::-moz-color-swatch {
       border: none;
       border-radius: 50%;
     }
-
     #colorPicker:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -271,7 +266,6 @@
   <!-- Final de Navegación -->
 
   <!-- Inicio del encabezado de la página -->
-     <!--Charly camio de color de fondo-->
     <div class="container-fluid bg-rich-black py-5">
         <div class="container py-5">
             <div class="row align-items-center py-4">
@@ -282,7 +276,7 @@
                     <div class="d-inline-flex align-items-center">
                         <a class="btn btn-outline-primary" href="">Hogar</a>
                         <i class="fas fa-angle-double-right text-juniper mx-2"></i>
-                        <a class="btn btn-outline-primary disabled" href="">Editador Visual</a>
+                        <a class="btn btn-outline-primary disabled" href="">Editor Visual</a>
                     </div>
                 </div>
             </div>
@@ -291,40 +285,31 @@
     <!-- Final del encabezado de la página -->
 
   <!-- CONTENIDO PRINCIPAL -->
- <!-- CONTENIDO PRINCIPAL -->
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: auto;">
-
   <h2>Transforma tu Espacio en Instantes</h2>
   <p id="actionInstruction">Sube tu imagen, selecciona áreas, aplica color y textura. Deja volar tu imaginacion</p>
-
   <!-- Subir imagen -->
   <input type="file" id="upload" accept="image/*" class="btn-filtro">
-  <button class="btn-filtro" onclick="resetImage()">🔄 Restablecer</button>
-  <button class="btn-filtro" onclick="clearSelection()">❌ Quitar Cambios</button>
-
+  <button class="btn-filtro" onclick="resetImage()">Restaurar Imagen</button>
+  <button class="btn-filtro" onclick="clearSelection()">Limpiar Selección</button>
   <!-- Tolerancia -->
   <div style="margin: 10px 0;">
     <label>Tolerancia: <span id="tolVal">30</span></label>
     <input type="range" id="tolerance" min="1" max="100" value="30" style="width:200px;">
   </div>
-
   <!-- Modos de selección -->
   <div>
-    <button class="btn-filtro" onclick="mode='add'">➕ Seleccionar</button>
-    <button class="btn-filtro" onclick="mode='remove'">➖ Quitar Selección</button>
+    <button class="btn-filtro" onclick="mode='add'">Seleccionar Área</button>
+    <button class="btn-filtro" onclick="mode='remove'">Remover Área</button>
   </div>
-
   <!-- Canvas -->
   <canvas id="canvas" width="800" height="600" style="border:1px solid #333; margin:10px auto; cursor:crosshair;"></canvas>
-
   <!-- Barra de colores -->
   <h3>Colores</h3>
   <div id="colorBar" style="margin-bottom:10px;"></div>
   <input type="color" id="colorPicker" value="#FF0000">
-
   <!-- Aplicar -->
-  <button class="btn-filtro" onclick="applyColor()">✅ Aplicar Color</button>
-
+  <button class="btn-filtro" onclick="applyColor()">Aplicar Color</button>
   <!-- Texturas -->
   <h3>Texturas</h3>
   <div id="textureBar">
@@ -333,20 +318,16 @@
     <button class="btn-filtro" onclick="selectTexture('img/Pared piedra.jpg')">LADRILLO</button>
     <button class="btn-filtro" onclick="selectTexture('img/textura marmol.jpg')">MARMOL</button>
   </div>
-
   <!-- Aplicar textura -->
   <div style="margin-top: 10px;">
-    <button class="btn-filtro" onclick="applyTextureOnly()">🖼️ Aplicar Solo Textura</button>
-    <button class="btn-filtro" onclick="applyTextureWithColor()">🎨 Mezclar con Color</button>
+    <button class="btn-filtro" onclick="applyTextureOnly()">Aplicar Solo Textura</button>
+    <button class="btn-filtro" onclick="applyTextureWithColor()">Mezclar Textura y Color</button>
   </div>
-
   <!-- Guardar y enviar -->
   <h3>Guardar o Enviar</h3>
-  <button class="btn-filtro" click="downloadImage()">💾 Descargar Imagen</button>
-  <button class="btn-filtro" onclick="sendEmail()">✉️ Enviar a Gmail</button>
-
+  <button class="btn-filtro" onclick="downloadImage()">Descargar</button>
+  <button class="btn-filtro" onclick="sendEmail()">Enviar por Correo</button>
 </div>
-
 <style>
   .btn-filtro{
     background: #32612d;
@@ -362,7 +343,6 @@
     background: #29961d;
   }
 </style>
-
 <script>
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -372,7 +352,6 @@
   let selectedPixels = new Set();
   let mode = 'add';
   let selectedTexture = null;
-
   const colors = [
     '#FFFFFF','#F5F5DC','#D2B48C','#98FB98',
     '#87CEEB','#FFB6C1','#FFD700','#FF4500',
@@ -392,7 +371,6 @@
     };
     colorBar.appendChild(btn);
   });
-
   document.getElementById('upload').onchange = (e) => {
     const reader = new FileReader();
     reader.onload = function(evt) {
@@ -408,11 +386,9 @@
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-
   document.getElementById('tolerance').oninput = (e) => {
     document.getElementById('tolVal').innerText = e.target.value;
   };
-
   canvas.addEventListener('click', function(e) {
     if (!workingData) return;
     const rect = canvas.getBoundingClientRect();
@@ -426,7 +402,6 @@
     ];
     const tol = parseInt(document.getElementById('tolerance').value);
     const visited = new Uint8Array(workingData.width * workingData.height);
-
     function floodFill(x, y) {
       const stack = [[x, y]];
       while (stack.length) {
@@ -454,13 +429,11 @@
         }
       }
     }
-
     floodFill(x, y);
     highlightSelection();
-    document.getElementById('actionInstruction').innerText = mode === 'add' ? 
+    document.getElementById('actionInstruction').innerText = mode === 'add' ?
       "✅ Área añadida." : "➖ Área removida.";
   });
-
   function colorDistance(c1, c2) {
     return Math.sqrt(
       (c1[0] - c2[0]) ** 2 +
@@ -468,7 +441,6 @@
       (c1[2] - c2[2]) ** 2
     );
   }
-
   function highlightSelection() {
     let temp = ctx.createImageData(workingData);
     temp.data.set(workingData.data);
@@ -480,7 +452,6 @@
     });
     ctx.putImageData(temp, 0, 0);
   }
-
   function applyColor() {
     if (selectedPixels.size === 0) return alert("Selecciona un área primero.");
     const color = hexToRgb(document.getElementById('colorPicker').value);
@@ -492,12 +463,10 @@
     });
     ctx.putImageData(workingData, 0, 0);
   }
-
   function selectTexture(src) {
     selectedTexture = src;
     document.getElementById('actionInstruction').innerText = "🎨 Textura seleccionada. Aplica con el botón.";
   }
-
   function applyTextureOnly() {
     if (!selectedTexture) return alert("Selecciona una textura primero.");
     const img = new Image();
@@ -509,23 +478,19 @@
       pctx.fillStyle = pctx.createPattern(img, 'repeat');
       pctx.fillRect(0, 0, canvas.width, canvas.height);
       const textureData = pctx.getImageData(0, 0, canvas.width, canvas.height);
-
       selectedPixels.forEach(i => {
         const idx = i * 4;
         workingData.data[idx] = textureData.data[idx];
         workingData.data[idx + 1] = textureData.data[idx + 1];
         workingData.data[idx + 2] = textureData.data[idx + 2];
       });
-
       ctx.putImageData(workingData, 0, 0);
     };
     img.src = selectedTexture;
   }
-
   function applyTextureWithColor() {
     if (!selectedTexture) return alert("Selecciona una textura primero.");
     const color = hexToRgb(document.getElementById('colorPicker').value);
-
     const img = new Image();
     img.onload = () => {
       const patternCanvas = document.createElement('canvas');
@@ -535,19 +500,16 @@
       pctx.fillStyle = pctx.createPattern(img, 'repeat');
       pctx.fillRect(0, 0, canvas.width, canvas.height);
       const textureData = pctx.getImageData(0, 0, canvas.width, canvas.height);
-
       selectedPixels.forEach(i => {
         const idx = i * 4;
         workingData.data[idx] = (color.r + textureData.data[idx]) / 2;
         workingData.data[idx + 1] = (color.g + textureData.data[idx + 1]) / 2;
         workingData.data[idx + 2] = (color.b + textureData.data[idx + 2]) / 2;
       });
-
       ctx.putImageData(workingData, 0, 0);
     };
     img.src = selectedTexture;
   }
-
   function hexToRgb(hex) {
     const bigint = parseInt(hex.slice(1), 16);
     return {
@@ -556,7 +518,6 @@
       b: bigint & 255
     };
   }
-
   function resetImage() {
     if (!originalData) return;
     workingData = ctx.createImageData(originalData);
@@ -564,24 +525,21 @@
     ctx.putImageData(workingData, 0, 0);
     selectedPixels.clear();
   }
-
   function clearSelection() {
     resetImage();
   }
-
   function downloadImage() {
     const link = document.createElement('a');
     link.download = 'imagen_editada.png';
     link.href = canvas.toDataURL();
     link.click();
   }
-
- function sendEmail() {
+  function sendEmail() {
   const subject = encodeURIComponent("Imagen Editada");
   const body = encodeURIComponent("Adjunto la imagen editada desde el editor.");
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=momedproyectos@gmail.com&su=${subject}&body=${body}`;
   window.open(gmailUrl, '_blank');
-}
+  }
 </script>
 <!-- FIN DEL CONTENIDO PRINCIPAL -->
   <div class="container-fluid bg-rich-black text-timber-green py-5 px-sm-3 px-md-5">
@@ -641,158 +599,43 @@
       </p>
     </div>
   </div>
-
   <!-- Volver Arriba -->
   <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
   <!-- SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-  <script>
-    const imageUpload = document.getElementById('imageUpload');
-    const uploadedImage = document.getElementById('uploadedImage');
-    const colorOverlay = document.getElementById('colorOverlay');
-    const textureOverlay = document.getElementById('textureOverlay');
-    const colorPicker = document.getElementById('colorPicker');
-    const intensityRange = document.getElementById('intensityRange');
-    const intensityValue = document.getElementById('intensityValue');
-
-    let currentColor = '#FFFFFF';
-    let currentIntensity = 60;
-
-    // Cargar imagen
-    imageUpload.addEventListener('change', function (event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          uploadedImage.src = e.target.result;
-          uploadedImage.style.display = 'block';
-          colorOverlay.style.display = 'block';
-          // Aplicar color actual si hay uno
-          if (currentColor) {
-            applyWallColor(currentColor);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Aplicar color de pared predefinido
-    function applyWallColor(color) {
-      if (uploadedImage.style.display === 'none') {
-        alert('Por favor, sube una imagen primero');
-        return;
-      }
-      
-      currentColor = color;
-      colorOverlay.style.backgroundColor = color;
-      colorOverlay.style.opacity = currentIntensity / 100;
-      colorOverlay.style.display = 'block';
-      
-      // Actualizar el selector de color
-      colorPicker.value = color;
-    }
-
-    // Aplicar color personalizado
-    function applyCustomColor() {
-      const color = colorPicker.value;
-      applyWallColor(color);
-    }
-
-    // Actualizar intensidad
-    function updateIntensity() {
-      currentIntensity = intensityRange.value;
-      intensityValue.textContent = currentIntensity + '%';
-      
-      if (currentColor && uploadedImage.style.display !== 'none') {
-        colorOverlay.style.opacity = currentIntensity / 100;
-      }
-    }
-
-    // Aplicar filtros CSS
-    function applyFilter(filter) {
-      if (uploadedImage.style.display === 'none') {
-        alert('Por favor, sube una imagen primero');
-        return;
-      }
-      uploadedImage.style.filter = filter;
-    }
-
-    // Aplicar textura
-    function applyTexture(texturePath) {
-      if (uploadedImage.style.display === 'none') {
-        alert('Por favor, sube una imagen primero');
-        return;
-      }
-      
-      if (texturePath === '') {
-        textureOverlay.src = '';
-        textureOverlay.style.display = 'none';
-      } else {
-        textureOverlay.src = texturePath;
-        textureOverlay.style.display = 'block';
-      }
-    }
-
-    // Resetear todo
-    function resetAll() {
-      uploadedImage.style.filter = 'none';
-      colorOverlay.style.display = 'none';
-      textureOverlay.style.display = 'none';
-      textureOverlay.src = '';
-      currentColor = '#FFFFFF';
-      colorPicker.value = '#FFFFFF';
-      intensityRange.value = 60;
-      currentIntensity = 60;
-      intensityValue.textContent = '60%';
-    }
-
-    // Inicializar
-    updateIntensity();
-  </script>
-
-  <!-- JavaScript Librerias -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <!-- Archivo de Contacto Javascript -->
   <script src="mail/jqBootstrapValidation.min.js"></script>
   <script src="mail/contact.js"></script>
   <!-- Plantilla Javascript -->
   <script src="js/main.js"></script>
-
   <!-- Musica de Fondo Playlist mejorado por Charly -->
   <audio id="musicaFondo" autoplay style="display: none;"></audio>
   <button onclick="toggleAudio()" class="musica-banner">
     🔊Música
   </button>
   <script>
-    // Aqui se ponen las canciones 
-    const canciones = [ 
-            "Musica/Lost Love.mp3",
+    // Aqui se ponen las canciones
+    const canciones = [
+             "Musica/Lost Love.mp3",
             "Musica/Father Ocean.mp3",
             "Musica/Give Me a Kiss.mp3",
-            "Musica/Hunting.mp3", 
-            "Musica/I know.mp3",
+            "Musica/Hunting.mp3",
+             "Musica/I know.mp3",
             "Musica/I love You Always Forever.mp3",
-            "Musica/In Memoriam.mp3", 
-            "Musica/Jealous Girl.mp3",
+            "Musica/In Memoriam.mp3",
+             "Musica/Jealous Girl.mp3",
             "Musica/La Mer.mp3",
-            "Musica/Late Night Alumni.mp3", 
-            "Musica/Leaving Me.mp3",
+            "Musica/Late Night Alumni.mp3",
+             "Musica/Leaving Me.mp3",
             "Musica/Father Ocean.mp3",
-            "Musica/Love Story - Indila.mp3", 
-            "Musica/My life.mp3",
+            "Musica/Love Story - Indila.mp3",
+             "Musica/My life.mp3",
             "Musica/My World.mp3",
-            "Musica/Norah Jones.mp3", 
-            "Musica/Romance.mp3",
+            "Musica/Norah Jones.mp3",
+             "Musica/Romance.mp3",
             "Musica/Stacey Kent.mp3",
             "Musica/Studying You.mp3",
             "Musica/Welcome Back.mp3",
@@ -802,18 +645,18 @@
     const audio = document.getElementById('musicaFondo');
     let isPlaying = true;
     let cancionActual = 0;
-    
-    // Carga la primera canción
+
+        // Carga la primera canción
     audio.src = canciones[cancionActual];
-    
-    // Cuando termine una canción, se reproduce la siguiente automáticamente
+
+        // Cuando termine una canción, se reproduce la siguiente automáticamente
     audio.addEventListener('ended', function() {
       cancionActual = (cancionActual + 1) % canciones.length;
       audio.src = canciones[cancionActual];
       audio.play();
     });
-    
-    function toggleAudio() {
+
+        function toggleAudio() {
       if (isPlaying) {
         audio.pause();
         event.target.innerText = "🔇Mute";
