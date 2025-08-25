@@ -149,79 +149,63 @@
 
     <!-- "Inicio del encabezado de la página". -->
      <!--Charly cambio de color-->
-    <div class="container-fluid bg-rich-black py-5">
-        <div class="container py-5">
-            <div class="row align-items-center py-4">
-                <div class="col-md-6 text-center text-md-left">
-                    <!--Charly cambio de color-->
-                    <h1 class="mb-4 mb-md-0 text-floral-white text-uppercase">Comunícate con Nosotros</h1>
-                </div>
-                <div class="col-md-6 text-center text-md-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="btn btn-outline-primary" href="">Hogar</a>
-                        <i class="fas fa-angle-double-right text-juniper mx-2"></i>
-                        <a class="btn btn-outline-primary disabled" href="">Contáctanos</a>
-                    </div>
-                </div>
-            </div>
+   <!-- Sección de contacto -->
+<div class="container-fluid bg-light py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <!-- Encabezado -->
+        <div class="text-center mb-5">
+          <h2 class="text-dark text-uppercase">Comunícate con Nosotros</h2>
+          <p class="text-muted">Déjanos tus datos y te responderemos lo antes posible.</p>
         </div>
+        
+        <!-- Formulario -->
+        <div class="p-5 shadow rounded bg-white">
+          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+            
+            <div class="form-group mb-4">
+              <label for="name" class="form-label">Nombre completo</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="name" placeholder="Ej. Juan Pérez" required />
+              </div>
+            </div>
+            
+            <div class="form-group mb-4">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required />
+              </div>
+            </div>
+            
+            <div class="form-group mb-4">
+              <label for="subject" class="form-label">Tema de consulta</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                <input type="text" class="form-control" id="subject" placeholder="Cotización, dudas, soporte..." required />
+              </div>
+            </div>
+            
+            <div class="form-group mb-4">
+              <label for="message" class="form-label">Tu mensaje</label>
+              <textarea class="form-control" id="message" rows="5" placeholder="Escribe aquí tu mensaje..." required></textarea>
+            </div>
+            
+            <button class="btn btn-primary w-100 py-3" type="submit" id="sendMessageButton">
+              <i class="fas fa-paper-plane mr-2"></i> Enviar Mensaje
+            </button>
+            
+          </form>
+        </div>
+        
+      </div>
     </div>
-    <!-- "Final del encabezado de la página". -->
-
-
-    <!-- "Inicio de la sección de contacto" -->
-    <div class="container-fluid bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
-                    <!--Charly cambio de color de fondo-->
-                    <div class="d-flex flex-column justify-content-center bg-basil h-100 p-5">
-                        <div class="d-inline-flex border border-secondary p-4 mb-4">
-                            <h1 class="flaticon-email font-weight-normal text-shamrock m-0 mr-3"></h1>
-                            <div class="d-flex flex-column">
-                                <h4>Envíanos un correo</h4>
-                                <p class="m-0 text-white">MOMEDPROYECTOS@gmail.com</p>
-                            </div>
-                        </div>
-                        <!--Logo Whatsapp-->
-                        <div class="d-inline-flex border border-secondary p-4">
-    <h1 class="fab fa-whatsapp font-weight-normal text-shamrock m-0 mr-3" style="font-size: 3rem;"></h1>
-    <div class="d-flex flex-column">
-        <h4>Contactanos</h4>
-        <p class="m-0 text-white">442 3440411-442 3451559</p>
-    </div>
+  </div>
 </div>
-                    </div>
-                </div>
-                <div class="col-lg-7 mb-5 my-lg-5 py-5 pl-lg-5">
-                    <div class="contact-form">
-                        <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="name" placeholder="Tu Nombre" required="required" data-validation-required-message="Please enter your name" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <input type="email" class="form-control p-4" id="email" placeholder="Tu Correo Electrónico" required="required" data-validation-required-message="Please enter your email" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Asunto" required="required" data-validation-required-message="Please enter a subject" />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <textarea class="form-control p-4" rows="6" id="message" placeholder="Mensaje" required="required" data-validation-required-message="Please enter your message"></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div>
-                                <button class="btn btn-primary py-3 px-5" type="submit" id="sendMessageButton">Enviar Mensaje</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- "Inicio de la sección de contacto" -->
 
 
