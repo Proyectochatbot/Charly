@@ -210,7 +210,7 @@
               <div class="dropdown-menu rounded-0 m-0">
                 <a href="blog.html" class="dropdown-item text-timber-green">Cuadricula de Blog</a>
                 <a href="single.html" class="dropdown-item text-timber-green">Detalle del Blog</a>
-                <a href="filtros.html" class="dropdown-item text-timber-green">Editor Visual</a>
+                <a href="filtros.html" class="dropdown-item text-timber-green">Diseñame</a>
               </div>
             </div>
             <a href="contact.html" class="nav-item text-timber-green nav-link">Contacto</a>
@@ -275,11 +275,13 @@
     </div>
     <!-- Final del encabezado de la página -->
   <!-- CONTENIDO PRINCIPAL -->
+   <br>
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 800px; margin: auto;">
   <h2>Transforma tu Espacio en Instantes</h2>
-  <p id="actionInstruction">Sube tu imagen, selecciona áreas, aplica color y textura. Deja volar tu imaginacion</p>
+  <p id="actionInstruction" class="text-dark">"Sube tu imagen, selecciona áreas, aplica color y textura. Deja volar tu imaginacion y haznos llegar tu idea.
+Nosotros hacemos la magia"</p></br>
   <!-- Subir imagen -->
-  <input type="file" id="upload" accept="image/*" class="btn-filtro">
+  <input type="file" id="upload" accept="image/*" class="btn-filtro" style="margin-bottom: 20px;">
   <button class="btn-filtro" onclick="resetImage()">Restaurar Imagen</button>
   <button class="btn-filtro" onclick="clearSelection()">Limpiar Selección</button>
   <!-- Tolerancia -->
@@ -292,15 +294,20 @@
     <button class="btn-filtro" onclick="mode='add'">Seleccionar Área</button>
     <button class="btn-filtro" onclick="mode='remove'">Remover Área</button>
   </div>
+  <br></br>
   <!-- Canvas -->
   <canvas id="canvas" width="800" height="600" style="border:1px solid #333; margin:10px auto; cursor:crosshair;"></canvas>
   <!-- Barra de colores -->
-  <h3>Colores</h3>
+   <div>
+  <h3 style="margin-bottom: 5px;">Colores</h3>
   <div id="colorBar" style="margin-bottom:10px;"></div>
   <input type="color" id="colorPicker" value="#FF0000">
+  </div>
   <!-- Aplicar -->
   <button class="btn-filtro" onclick="applyColor()">Aplicar Color</button>
+  
   <!-- Texturas -->
+  
   <h3>Texturas</h3>
   <div id="textureBar">
     <button class="btn-filtro" onclick="selectTexture('img/granito-blanco.jpg')">GRANITO</button>
@@ -311,6 +318,7 @@
     <button class="btn-filtro" onclick="selectTexture('img/PIEDRA NEGRA.png')">PIEDRA NEGRA</button>
     <button class="btn-filtro" onclick="selectTexture('img/TEXTURA DE ROCA.png')">TEXTURA DE ROCA</button>
   </div>
+  
   <!-- Aplicar textura -->
   <div style="margin-top: 10px;">
     <button class="btn-filtro" onclick="applyTextureOnly()">Aplicar Solo Textura</button>
@@ -321,6 +329,8 @@
   <button class="btn-filtro" onclick="downloadImage()">Descargar</button>
   <button class="btn-filtro" onclick="sendEmail()">Enviar por Correo</button>
 </div>
+
+<br></br>
 <style>
   .btn-filtro{
     background: #32612d;
