@@ -99,8 +99,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle text-timber-green" data-toggle="dropdown">Paginas</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item text-timber-green">Nuestra Revista</a>
-                                <a href="single.html" class="dropdown-item text-timber-green">Sabías Qué…?</a>
+                                <a href="blog.html" class="dropdown-item text-timber-green">Cuadricula de Blog</a>
+                                <a href="single.html" class="dropdown-item text-timber-green">Detalle del Blog</a>
                                 <a href="filtros.html" class="dropdown-item text-timber-green">Diseñame</a>
 
                             </div>
@@ -409,7 +409,7 @@
 <!-- Sección: Editor de Filtros -->
 <section class="py-5 bg-light text-center">
   <div class="container">
-    <h2 class="mb-3">"Deja volar tu imaginación, con nuestro editor"</h2>
+    <h2 class="mb-3">Deja volar tu imaginacion en nuestro editior de interiores y paredes</h2>
     <p class="mb-4; text-dark">Déjanos sorprenderte con un diseño hecho a tu medida.</p>
     <img src="img/Editor simulador.gif" alt="Residencial6" style="height: 300px;">
     <br></br>
@@ -596,7 +596,6 @@
                 <a href="img/PERGOLA 11.jpeg" data-lightbox="portfolio"></a>
                 <a href="img/PERGOLA 12.jpg" data-lightbox="portfolio"></a>
                 <a href="img/PERGOLA 13.jpg" data-lightbox="portfolio"></a>
-                <a href="img/PERGOLA 13.png" data-lightbox="portfolio"></a>
                 <a href="img/PERGOLA 14.jpg" data-lightbox="portfolio"></a>
             </div>
         </div>
@@ -700,9 +699,24 @@
                         <div class="portfolio-text bg-secondary d-flex flex-column align-items-center justify-content-center">
                             <h4 class="text-white mb-4">PERGOLAS</h4>
                             <div class="d-flex align-items-center justify-content-center">
-                                <a class="btn btn-outline-primary m-1" href="project.html">
+                                <a class="btn btn-outline-primary m-1" href="">
                                     <i class="fa fa-link"></i>
                                 </a>
+                                <a class="btn btn-outline-primary m-1" href="img/IMG_4560.JPG" data-lightbox="portfolio">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="img/IMG-20250824-WA0050.jpg" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_20250803_192550_700.jpg" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_4560.JPG" data-lightbox="portfolio"></a>
+                                <a href="img/PERGOLA 4.png" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_20250803_192550_790.jpg" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_20250803_192549_528.jpg" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_20250803_192550_635.jpg" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_20250803_192549_904.jpg" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_4366.JPG" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_4578.JPG" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_4591.JPG" data-lightbox="portfolio"></a>
+                                <a href="img/IMG_4621.JPG" data-lightbox="portfolio"></a>
                             </div>
                         </div>
                     </div>
@@ -1012,64 +1026,119 @@
     <!-- Plantilla Javascript -->
     <script src="js/main.js"></script>
 
-    <!-- Musica de Fondo Playlist mejorado por Charly -->
-    <audio id="musicaFondo" autoplay style="display: none;">
-    </audio>
+    <!--Inicio de Musica de Fondo Playlist mejorado por Charly -->
+    <audio id="musicaFondo" autoplay loop style="display: none;">
+</audio>
 
-    <button onclick="toggleAudio()" class="musica-banner">
-        🔊Música
-    </button>
+<button onclick="toggleAudio()" class="musica-banner" id="botonMusica">
+     🔊Música
+</button>
 
-    <script>
-        // Aqui se ponen las canciones 
-        const canciones = [
-            "Musica/Father Ocean.mp3",
-            "Musica/Coming Home.mp3", 
-            "Musica/Give Me a Kiss.mp3",
-            "Musica/Hunting.mp3", 
-            "Musica/I know.mp3",
-            "Musica/I love You Always Forever.mp3",
-            "Musica/In Memoriam.mp3", 
-            "Musica/Jealous Girl.mp3",
-            "Musica/La Mer.mp3",
-            "Musica/Late Night Alumni.mp3", 
-            "Musica/Leaving Me.mp3",
-            "Musica/Lost Love.mp3",
-            "Musica/Love Story - Indila.mp3", 
-            "Musica/My life.mp3",
-            "Musica/My World.mp3",
-            "Musica/Norah Jones.mp3", 
-            "Musica/Romance.mp3",
-            "Musica/Stacey Kent.mp3",
-            "Musica/Studying You.mp3",
-            "Musica/Welcome Back.mp3",
-            "Musica/Withering.mp3"
-        ];
+<script>
+    // Aqui se ponen las canciones 
+    const canciones = [
+        "Musica/Father Ocean.mp3",
+        "Musica/Coming Home.mp3", 
+        "Musica/Give Me a Kiss.mp3",
+        "Musica/Hunting.mp3", 
+        "Musica/I know.mp3",
+        "Musica/I love You Always Forever.mp3",
+        "Musica/In Memoriam.mp3", 
+        "Musica/Jealous Girl.mp3",
+        "Musica/La Mer.mp3",
+        "Musica/Late Night Alumni.mp3", 
+        "Musica/Leaving Me.mp3",
+        "Musica/Lost Love.mp3",
+        "Musica/Love Story - Indila.mp3", 
+        "Musica/My life.mp3",
+        "Musica/My World.mp3",
+        "Musica/Norah Jones.mp3", 
+        "Musica/Romance.mp3",
+        "Musica/Stacey Kent.mp3",
+        "Musica/Studying You.mp3",
+        "Musica/Welcome Back.mp3",
+        "Musica/Withering.mp3"
+    ];
 
-        const audio = document.getElementById('musicaFondo');
-        let isPlaying = true;
-        let cancionActual = 0;
+    const audio = document.getElementById('musicaFondo');
+    const botonMusica = document.getElementById('botonMusica');
+    let isPlaying = false;
+    let cancionActual = 0;
 
-        // Carga la primera canción
+    function iniciarMusicaAutomatica() {
         audio.src = canciones[cancionActual];
-
-        // Cuando termine una canción, se reproduce la siguiente automáticamente
-        audio.addEventListener('ended', function() {
-            cancionActual = (cancionActual + 1) % canciones.length; // Vuelve al inicio cuando termine la lista
-            audio.src = canciones[cancionActual];
-            audio.play(); // Reproduce automáticamente la siguiente cancion
-        });
-
-        function toggleAudio() {
-            if (isPlaying) {
-                audio.pause();
-                event.target.innerText = "🔇Mute";
-            } else {
-                audio.play();
-                event.target.innerText = "🔊Música";
-            }
-            isPlaying = !isPlaying;
+        
+        // Intenta reproducir automáticamente
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Reproducción exitosa
+                isPlaying = true;
+                botonMusica.innerText = "🔊Música";
+                console.log("[v0] Música iniciada automáticamente");
+            }).catch(error => {
+                // Reproducción bloqueada por el navegador
+                isPlaying = false;
+                botonMusica.innerText = "▶️ Iniciar Música";
+                botonMusica.style.animation = "pulse 2s infinite";
+                console.log("[v0] Reproducción automática bloqueada, se requiere interacción del usuario");
+            });
         }
-    </script>
+    }
+
+    window.addEventListener('load', function() {
+        iniciarMusicaAutomatica();
+    });
+
+    document.addEventListener('click', function iniciarConClick() {
+        if (!isPlaying) {
+            iniciarMusicaAutomatica();
+        }
+        // Remover el listener después del primer click
+        document.removeEventListener('click', iniciarConClick);
+    }, { once: true });
+
+    // Cuando termine una canción, se reproduce la siguiente automáticamente
+    audio.addEventListener('ended', function() {
+        cancionActual = (cancionActual + 1) % canciones.length;
+        audio.src = canciones[cancionActual];
+        audio.play();
+        console.log("[v0] Cambiando a la siguiente canción:", canciones[cancionActual]);
+    });
+
+    function toggleAudio() {
+        if (isPlaying) {
+            audio.pause();
+            botonMusica.innerText = "🔇Mute";
+            botonMusica.style.animation = "";
+        } else {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    botonMusica.innerText = "🔊Música";
+                    botonMusica.style.animation = "";
+                }).catch(error => {
+                    console.log("[v0] Error al reproducir:", error);
+                });
+            }
+        }
+        isPlaying = !isPlaying;
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .musica-banner {
+            transition: all 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+<!--Fin de la reproduccion de Musica-->
 </body>
 </html>
