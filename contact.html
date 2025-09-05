@@ -52,16 +52,12 @@
    target="_blank" 
    rel="noopener noreferrer">
    <i class="fab fa-facebook-f"></i></a>
-                        </a>
-                        </a>
-                        </a>
                         <!--Charly, Agregado y redireccion a la red social de Instagram-->
                         <a class="text-white px-3" 
    href="https://www.instagram.com/momed_arquitectura/?fbclid=IwY2xjawLGf-BleHRuA2FlbQIxMABicmlkETFGa0swOWpHN1dwZFBnSjFCAR4vy0A4iqyH8xGg_F4HKCoKwFYCBsZsAib7CEpJ7LOA2ehIvoU_87OjTcg6mg_aem_h4qptahWIcuug3rvusXuBg" 
    target="_blank" 
    rel="noopener noreferrer">
    <i class="fab fa-instagram"></i></a>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -92,8 +88,8 @@
                     <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle text-timber-green" data-toggle="dropdown">Paginas</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="blog.html" class="dropdown-item text-timber-green">Nuestra Revista</a>
-                                <a href="single.html" class="dropdown-item text-timber-green">Sabías Qué…?</a>
+                                <a href="blog.html" class="dropdown-item text-timber-green">Cuadricula de Blog</a>
+                                <a href="single.html" class="dropdown-item text-timber-green">Detalle del Blog</a>
                                 <a href="filtros.html" class="dropdown-item text-timber-green">Diseñame</a>
                             </div>
                         </div>
@@ -164,44 +160,117 @@
         </div>
         
         <!-- Formulario -->
-        <div class="p-5 shadow rounded bg-white">
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
-            
-            <div class="form-group mb-4">
-              <label for="name" class="form-label">Nombre completo</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                <input type="text" class="form-control" id="name" placeholder="Ej. Damián Castillo" required />
-              </div>
-            </div>
-            
-            <div class="form-group mb-4">
-              <label for="email" class="form-label">Correo electrónico</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required />
-              </div>
-            </div>
-            
-            <div class="form-group mb-4">
-              <label for="subject" class="form-label">Tema de consulta</label>
-              <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-tag"></i></span>
-                <input type="text" class="form-control" id="subject" placeholder="Cotización, dudas, soporte..." required />
-              </div>
-            </div>
-            
-            <div class="form-group mb-4">
-              <label for="message" class="form-label">Tu mensaje</label>
-              <textarea class="form-control" id="message" rows="5" placeholder="Escribe aquí tu mensaje..." required></textarea>
-            </div>
-            
-            <button class="btn btn-primary w-100 py-3" type="submit" id="sendMessageButton">
-              <i class="fas fa-paper-plane mr-2"></i> Enviar Mensaje
-            </button>
-            
-          </form>
-        </div>
+<div class="p-5 shadow rounded bg-white">
+  <form id="contactForm" onsubmit="sendMail(event)">
+    
+    <div class="form-group mb-4">
+      <label for="name" class="form-label">Nombre completo</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" id="name" placeholder="Ej. Damián Castillo" required />
+      </div>
+    </div>
+    
+    <div class="form-group mb-4">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        <input type="email" class="form-control" id="email" placeholder="ejemplo@correo.com" required />
+      </div>
+    </div>
+    
+    <div class="form-group mb-4">
+      <label for="subject" class="form-label">Tema de consulta</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+        <input type="text" class="form-control" id="subject" placeholder="Cotización, dudas, soporte..." required />
+      </div>
+    </div>
+    
+    <div class="form-group mb-4">
+      <label for="message" class="form-label">Tu mensaje</label>
+      <textarea class="form-control" id="message" rows="5" placeholder="Escribe aquí tu mensaje..." required></textarea>
+    </div>
+    
+    <!-- Agregado div para mostrar estado del envío -->
+    <div id="statusMessage" class="mb-3" style="display: none;"></div>
+    
+    <button class="btn btn-primary w-100 py-3" type="submit" id="sendMessageButton">
+      <i class="fas fa-paper-plane mr-2"></i> <span id="buttonText">Enviar Mensaje</span>
+    </button>
+    
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+let isSubmitting = false;
+
+// Inicializar EmailJS con tu Public Key
+emailjs.init("dvZUmksYNxDoLnlcH"); // Reemplaza con tu Public Key de EmailJS
+
+function sendMail(event) {
+  event.preventDefault();
+  
+  if (isSubmitting) {
+    return false;
+  }
+  
+  const button = document.getElementById('sendMessageButton');
+  const buttonText = document.getElementById('buttonText');
+  const statusMessage = document.getElementById('statusMessage');
+  
+  // Obtener datos del formulario
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    subject: document.getElementById('subject').value,
+    message: document.getElementById('message').value
+  };
+  
+  // Validar campos
+  if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    statusMessage.innerHTML = '<div class="alert alert-danger">Por favor completa todos los campos</div>';
+    statusMessage.style.display = 'block';
+    return false;
+  }
+  
+  isSubmitting = true;
+  button.disabled = true;
+  buttonText.textContent = 'Enviando...';
+  statusMessage.style.display = 'none';
+  
+  // Parámetros para el template de EmailJS
+  const templateParams = {
+    to_email: 'momedproyectos@gmail.com',
+    from_name: formData.name,
+    from_email: formData.email,
+    subject: formData.subject,
+    message: formData.message,
+    reply_to: formData.email
+  };
+  
+  // Enviar email usando EmailJS
+  emailjs.send('service_9xchf9h', 'template_p4g68ep', templateParams)
+    .then(function(response) {
+      console.log('Email enviado exitosamente:', response);
+      statusMessage.innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle mr-2"></i>¡Mensaje enviado correctamente! Te responderemos pronto a ' + formData.email + '</div>';
+      document.getElementById('contactForm').reset();
+    })
+    .catch(function(error) {
+      console.error('Error al enviar email:', error);
+      statusMessage.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-triangle mr-2"></i>Error al enviar el mensaje. Por favor inténtalo de nuevo o contáctanos directamente.</div>';
+    })
+    .finally(function() {
+      isSubmitting = false;
+      button.disabled = false;
+      buttonText.textContent = 'Enviar Mensaje';
+      statusMessage.style.display = 'block';
+    });
+  
+  return false;
+}
+</script>
         
       </div>
     </div>
@@ -209,6 +278,7 @@
 </div>
 
     <!-- "Inicio de la sección de contacto" -->
+
 
 
     <!-- "Inicio del pie de página". -->
@@ -303,8 +373,8 @@
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <!-- <script src="mail/jqBootstrapValidation.min.js"></script> -->
+    <!-- <script src="mail/contact.js"></script> -->
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
