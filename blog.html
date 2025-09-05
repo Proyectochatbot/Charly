@@ -454,15 +454,18 @@
     <script src="mail/contact.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Música de fondo -->
-    <audio id="musicaFondo" autoplay style="display: none;"></audio>
-    <button onclick="toggleAudio()" class="musica-banner">
-        🔊Música
-    </button>
+    <!--Inicio de Musica de Fondo Playlist mejorado por Charly -->
+    <audio id="musicaFondo" autoplay loop style="display: none;">
+</audio>
 
-    <script>
-        const canciones = [ 
-            "Musica/Norah Jones.mp3",        
+<button onclick="toggleAudio()" class="musica-banner" id="botonMusica">
+    🔊Música
+</button>
+
+<script>
+    // Aqui se ponen las canciones 
+    const canciones = [
+        "Musica/Norah Jones.mp3",        
             "Musica/Love Story - Indila.mp3",
             "Musica/Hunting.mp3", 
             "Musica/I know.mp3",
@@ -475,7 +478,6 @@
             "Musica/Lost Love.mp3",
             "Musica/My life.mp3",
             "Musica/My World.mp3",
- 
             "Musica/Romance.mp3",
             "Musica/Stacey Kent.mp3",
             "Musica/Studying You.mp3",
@@ -484,30 +486,88 @@
             "Musica/Coming Home.mp3",
             "Musica/Father Ocean.mp3",
             "Musica/Give Me a Kiss.mp3"
-        ];
+    ];
 
-        const audio = document.getElementById('musicaFondo');
-        let isPlaying = true;
-        let cancionActual = 0;
+    const audio = document.getElementById('musicaFondo');
+    const botonMusica = document.getElementById('botonMusica');
+    let isPlaying = false;
+    let cancionActual = 0;
 
+    function iniciarMusicaAutomatica() {
         audio.src = canciones[cancionActual];
-
-        audio.addEventListener('ended', function() {
-            cancionActual = (cancionActual + 1) % canciones.length;
-            audio.src = canciones[cancionActual];
-            audio.play();
-        });
-
-        function toggleAudio() {
-            if (isPlaying) {
-                audio.pause();
-                event.target.innerText = "🔇Mute";
-            } else {
-                audio.play();
-                event.target.innerText = "🔊Música";
-            }
-            isPlaying = !isPlaying;
+        
+        // Intenta reproducir automáticamente
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Reproducción exitosa
+                isPlaying = true;
+                botonMusica.innerText = "🔊Música";
+                console.log("[v0] Música iniciada automáticamente");
+            }).catch(error => {
+                // Reproducción bloqueada por el navegador
+                isPlaying = false;
+                botonMusica.innerText = "▶️ Iniciar Música";
+                botonMusica.style.animation = "pulse 2s infinite";
+                console.log("[v0] Reproducción automática bloqueada, se requiere interacción del usuario");
+            });
         }
-    </script>
+    }
+
+    window.addEventListener('load', function() {
+        iniciarMusicaAutomatica();
+    });
+
+    document.addEventListener('click', function iniciarConClick() {
+        if (!isPlaying) {
+            iniciarMusicaAutomatica();
+        }
+        // Remover el listener después del primer click
+        document.removeEventListener('click', iniciarConClick);
+    }, { once: true });
+
+    // Cuando termine una canción, se reproduce la siguiente automáticamente
+    audio.addEventListener('ended', function() {
+        cancionActual = (cancionActual + 1) % canciones.length;
+        audio.src = canciones[cancionActual];
+        audio.play();
+        console.log("[v0] Cambiando a la siguiente canción:", canciones[cancionActual]);
+    });
+
+    function toggleAudio() {
+        if (isPlaying) {
+            audio.pause();
+            botonMusica.innerText = "🔇Mute";
+            botonMusica.style.animation = "";
+        } else {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    botonMusica.innerText = "🔊Música";
+                    botonMusica.style.animation = "";
+                }).catch(error => {
+                    console.log("[v0] Error al reproducir:", error);
+                });
+            }
+        }
+        isPlaying = !isPlaying;
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .musica-banner {
+            transition: all 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+<!--Fin de la reproduccion de Musica-->
+
 </body>
 </html>
