@@ -437,11 +437,11 @@
     <script src="js/main.js"></script>
 
     <!--Inicio de Musica de Fondo Playlist mejorado por Charly -->
-    <audio id="musicaFondo" autoplay loop style="display: none;">
+    <audio id="musicaFondo" autoplay style="display: none;">
 </audio>
 
 <button onclick="toggleAudio()" class="musica-banner" id="botonMusica">
-    🔊Música
+    🔊 Música
 </button>
 
 <script>
@@ -477,37 +477,29 @@
 
     function iniciarMusicaAutomatica() {
         audio.src = canciones[cancionActual];
+        audio.volume = 1.0; // Volumen máximo
         
-        // Intenta reproducir automáticamente
+        // Intenta reproducir inmediatamente
         const playPromise = audio.play();
         
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                // Reproducción exitosa
                 isPlaying = true;
-                botonMusica.innerText = "🔊Música";
-                console.log("[v0] Música iniciada automáticamente");
+                console.log("[v0] Música iniciada automáticamente al cargar");
             }).catch(error => {
-                // Reproducción bloqueada por el navegador
-                isPlaying = false;
-                botonMusica.innerText = "▶️ Iniciar Música";
-                botonMusica.style.animation = "pulse 2s infinite";
-                console.log("[v0] Reproducción automática bloqueada, se requiere interacción del usuario");
+                // Si falla, intenta de nuevo en el primer click
+                document.addEventListener('click', function() {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                    });
+                }, { once: true });
             });
         }
     }
 
-    window.addEventListener('load', function() {
-        iniciarMusicaAutomatica();
-    });
-
-    document.addEventListener('click', function iniciarConClick() {
-        if (!isPlaying) {
-            iniciarMusicaAutomatica();
-        }
-        // Remover el listener después del primer click
-        document.removeEventListener('click', iniciarConClick);
-    }, { once: true });
+    window.addEventListener('load', iniciarMusicaAutomatica);
+    // También intentar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', iniciarMusicaAutomatica);
 
     // Cuando termine una canción, se reproduce la siguiente automáticamente
     audio.addEventListener('ended', function() {
@@ -520,18 +512,11 @@
     function toggleAudio() {
         if (isPlaying) {
             audio.pause();
-            botonMusica.innerText = "🔇Mute";
-            botonMusica.style.animation = "";
+            botonMusica.innerText = "🔇 Mute";
         } else {
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    botonMusica.innerText = "🔊Música";
-                    botonMusica.style.animation = "";
-                }).catch(error => {
-                    console.log("[v0] Error al reproducir:", error);
-                });
-            }
+            audio.play().then(() => {
+                botonMusica.innerText = "🔊 Música";
+            });
         }
         isPlaying = !isPlaying;
     }
@@ -550,6 +535,6 @@
     document.head.appendChild(style);
 </script>
 <!--Fin de la reproduccion de Musica-->
-
 </body>
 </html>
+
